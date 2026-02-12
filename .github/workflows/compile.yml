@@ -1,0 +1,51 @@
+name: DiffEq LaTeX
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**.tex'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex 
+
+      - name: Prepare PDF
+        run: |
+          mv main.pdf ${{ github.event.repository.name }}.pdf
+
+      - name: Push PDF to current repo
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update PDF [skip ci]"
+          file_pattern: '*.pdf'
+
+      - name: Update Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          files: ${{ github.event.repository.name }}.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync to Central Repo
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GH_PAT }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # Клонируем репозиторий-сборник (замени 'dimas' на свой логин GitHub ниже!)
+          git clone https://$API_TOKEN_GITHUB@github.com/${{ github.repository_owner }}/My-All-PDFs.git central_repo
+          cp ${{ github.event.repository.name }}.pdf central_repo/
+          cd central_repo
+          git add .
+          git commit -m "Update ${{ github.event.repository.name }} from source" || echo "No changes"
+          git push

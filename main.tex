@@ -1,0 +1,201 @@
+\documentclass[a4paper,12pt]{article}
+
+% ==========================================
+% 1. ПОДДЕРЖКА ПОИСКА, КОДИРОВКИ И ШРИФТОВ
+% ==========================================
+\usepackage{cmap} % Теперь стоит после \documentclass
+\usepackage[utf8]{inputenc}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{indentfirst}
+
+% Microtype с отключенным расширением шрифтов (чтобы не было ошибки scalable fonts)
+\usepackage[expansion=false]{microtype} 
+
+% ==========================================
+% 2. МАТЕМАТИКА И ФИЗИКА
+% ==========================================
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+% Настройка siunitx, чтобы он не конфликтовал с physics (команда \qty)
+\usepackage[separate-uncertainty=true]{siunitx} 
+\usepackage{physics}   
+\usepackage{cancel}    
+
+\AtBeginDocument{\let\qty\quantity}
+
+% Сквозная нумерация формул
+\usepackage{chngcntr}
+\counterwithout{equation}{section}
+
+% ==========================================
+% 3. ГРАФИКА И СХЕМЫ (Совместимые с pdflatex)
+% ==========================================
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{tikz}
+
+% Библиотеки TikZ, которые работают везде (без LuaLaTeX)
+\usetikzlibrary{calc, patterns, arrows.meta, positioning, shapes.geometric, shadows}
+\usetikzlibrary{decorations.pathmorphing, decorations.markings}
+\usetikzlibrary{fit, backgrounds}
+
+% Электрические схемы
+\usepackage[european, straightvoltages]{circuitikz}
+
+% Графики функций
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ==========================================
+% 4. ОФОРМЛЕНИЕ ТЕОРЕМ И РАМОК (tcolorbox)
+% ==========================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+
+\definecolor{thmcolor}{RGB}{0, 100, 180}
+\definecolor{defcolor}{RGB}{0, 130, 70}
+\definecolor{excolor}{RGB}{160, 90, 0}
+\definecolor{nbcolor}{RGB}{80, 80, 80}
+
+\newtcbtheorem[number within=section]{theorem}{Теорема}{
+	enhanced, breakable, colback=thmcolor!5, colframe=thmcolor,
+	fonttitle=\bfseries, separator sign={\ ---}
+}{th}
+
+\newtcbtheorem[use counter from=theorem]{lemma}{Лемма}{
+	enhanced, breakable, colback=thmcolor!3, colframe=thmcolor!80,
+	fonttitle=\bfseries
+}{lem}
+
+\newtcbtheorem[use counter from=theorem]{definition}{Определение}{
+	enhanced, breakable, colback=defcolor!5, colframe=defcolor,
+	fonttitle=\bfseries
+}{def}
+
+\newtcbtheorem[no counter]{example}{Пример}{
+	enhanced, breakable, colback=excolor!5, colframe=excolor,
+	fonttitle=\bfseries, sharp corners
+}{ex}
+
+\newtcolorbox{nb}{
+	enhanced, breakable, colback=nbcolor!5, colframe=nbcolor,
+	title={NB / Важно}, fonttitle=\bfseries,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight/2},
+	boxed title style={colback=nbcolor}
+}
+
+\newtcolorbox{proofbox}{
+	empty, breakable, title={\textit{Доказательство:}},
+	coltitle=black, attach boxed title to top left,
+	boxed title style={empty, size=minimal, bottom=1mm},
+	borderline west={2pt}{0pt}{gray!50},
+	colback=white, after upper=\hfill$\blacksquare$
+}
+
+% ==========================================
+% 5. КОЛОНТИТУЛЫ И РАЗМЕТКА
+% ==========================================
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Полная очистка всех полей
+
+% Настройка того, что будет в \leftmark (убираем слово "Секция" или "Раздел")
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}} 
+
+\newcommand{\subjectName}{Дифференциальные уравнения} 
+\setlength{\headheight}{15pt}
+
+% ВЕРХНИЙ КОЛОНТИТУЛ
+\lhead{\small \textsc{\subjectName}} % Слева название предмета
+\rhead{\small \nouppercase{\leftmark}} % Справа название лекции (без лишних номеров страниц)
+
+% НИЖНИЙ КОЛОНТИТУЛ
+\cfoot{\thepage} % Номер страницы только тут
+
+% Линия вверху и внизу (0pt — убрать, 0.4pt — оставить тонкую)
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ==========================================
+% 6. ГИПЕРССЫЛКИ И ОГЛАВЛЕНИЕ
+% ==========================================
+\usepackage[hidelinks, unicode]{hyperref} % Кликабельное оглавление
+\usepackage{bookmark}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Конспект по дифференциальным уравнениям},
+}
+
+% ==========================================
+% 7. ЛОГИКА ИМПОРТА (Макрос)
+% ==========================================
+\newcommand{\addlecture}[1]{
+	\IfFileExists{#1.tex}{
+		\clearpage % Новая лекция с новой страницы
+		\input{#1}
+	}{
+		% Если файла нет, ничего не делаем
+	}
+}
+
+% ==========================================
+% НАЧАЛО ДОКУМЕНТА
+% ==========================================
+\begin{document}
+	
+	% --- Титульный лист ---
+	\begin{titlepage}
+		\centering
+		\vspace*{5cm}
+		
+		{\Huge \bfseries \subjectName \par}
+		\vspace{2cm}
+		{\Large Конспект 2026 \par}
+		\vspace{0.5cm}
+		{\large 4 семестр \par}
+		
+		\vfill
+		
+		% Можно добавить автора, если нужно
+		% {\large Автор конспекта}
+		
+		\vspace{2cm}
+	\end{titlepage}
+	
+	% --- Оглавление ---
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% --- Импорт лекций ---
+	% Явное перечисление файлов (без циклов, как просили)
+	% Если файла нет, ошибки не будет.
+	
+	\addlecture{lecture1}
+	\addlecture{lecture2}
+	\addlecture{lecture3}
+	\addlecture{lecture4}
+	\addlecture{lecture5}
+	\addlecture{lecture6}
+	\addlecture{lecture7}
+	\addlecture{lecture8}
+	\addlecture{lecture9}
+	\addlecture{lecture10}
+	\addlecture{lecture11}
+	\addlecture{lecture12}
+	\addlecture{lecture13}
+	\addlecture{lecture14}
+	\addlecture{lecture15}
+	\addlecture{lecture16}
+	
+	% Можно добавить больше при необходимости:
+	% \addlecture{lecture17}
+	
+\end{document}
