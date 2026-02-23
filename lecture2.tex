@@ -1,6 +1,6 @@
 \noindent \textbf{16.02}
 
-\section*{§ 6.3 Простейшие типы точек покоя}
+\section*{\S~6.3 \quad Простейшие типы точек покоя}
 
 \begin{itemize}
 	\item Для анализа поведения решений линейных систем оказывается удобным выделить в картине интегральных кривых характерные элементы. Такими элементами оказываются окрестности точек покоя.
@@ -12,14 +12,14 @@
 			\dv{y}{t} = a_{21}x + a_{22}y
 		\end{cases} \quad (223)
 	\end{equation}
-	причем $\Delta = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} \neq 0$.
+	причем $\Delta = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} \neq 0$
 \end{itemize}
 
-\begin{definition}{Точка покоя}{rest_point}
+\begin{definition}{Точка покоя}{rest_point_223}
 	Точка $x=x_0$, $y=y_0$, в которой правые части ур-ний системы \eqref{eq:223} обращаются в $0$, называется \textbf{точкой покоя} системы \eqref{eq:223}.
 \end{definition}
 
-Условие $\Delta \neq 0$ гарантирует, что точка покоя системы --- нулевая точка $x=0, y=0$.
+Условие $\Delta \neq 0$ гарантирует, что точка покоя системы --- нулевая точка $x=0$, $y=0$.
 
 \begin{itemize}
 	\item Составим характеристическое ур-нение: 
@@ -31,7 +31,7 @@
 
 1) Корни $\lambda_1, \lambda_2$ характеристического ур-ния \eqref{eq:224} вещественные и разные:
 \begin{itemize}
-	\item[(a)] $\lambda_1 < 0, \lambda_2 < 0$. Точка покоя асимптотически устойчива (устойчивый узел). \textcolor{orange}{рис. 1}
+	\item[(а)] $\lambda_1 < 0, \lambda_2 < 0$. Точка покоя асимптотически устойчива (устойчивый узел) \textcolor{orange}{рис. 1}
 	\item[(б)] $\lambda_1 > 0, \lambda_2 > 0$. Точка покоя неустойчива (неустойчивый узел). \textcolor{orange}{рис. 2}
 	\item[(в)] $\lambda_1 > 0, \lambda_2 < 0$. Точка покоя неустойчива (седло). \textcolor{orange}{рис. 3}
 \end{itemize}
@@ -47,14 +47,16 @@
 	\begin{tikzpicture}[scale=0.9, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
 		\draw[-stealth] (-3,0) -- (3,0);
 		\draw[-stealth] (0,-3) -- (0,3);
-		\foreach \c in {0.3, 0.8, 1.5, 3} {
-			\draw[postaction={decorate}] (2.5, \c) .. controls (1.5, \c*0.5) .. (0,0);
-			\draw[postaction={decorate}] (-2.5, \c) .. controls (-1.5, \c*0.5) .. (0,0);
-			\draw[postaction={decorate}] (2.5, -\c) .. controls (1.5, -\c*0.5) .. (0,0);
-			\draw[postaction={decorate}] (-2.5, -\c) .. controls (-1.5, -\c*0.5) .. (0,0);
+		\foreach \c in {0.5, 1.2, 2.0, 2.8} {
+			\draw[postaction={decorate}] (2.5, \c) to[out=180, in=90] (0,0);
+			\draw[postaction={decorate}] (-2.5, \c) to[out=0, in=90] (0,0);
+			\draw[postaction={decorate}] (2.5, -\c) to[out=180, in=-90] (0,0);
+			\draw[postaction={decorate}] (-2.5, -\c) to[out=0, in=-90] (0,0);
 		}
 		\draw[postaction={decorate}] (0,2.5) -- (0,0);
 		\draw[postaction={decorate}] (0,-2.5) -- (0,0);
+		\draw[postaction={decorate}] (2.5,0) -- (0,0);
+		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
 	\small Рис. 1. Устойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 < 0, \lambda_2 < 0$. Асимптотически устойчива
@@ -64,14 +66,16 @@
 	\begin{tikzpicture}[scale=0.9, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
 		\draw[-stealth] (-3,0) -- (3,0);
 		\draw[-stealth] (0,-3) -- (0,3);
-		\foreach \c in {0.3, 0.8, 1.5, 3} {
-			\draw[postaction={decorate}] (0,0) .. controls (1.5, \c*0.5) .. (2.5, \c);
-			\draw[postaction={decorate}] (0,0) .. controls (-1.5, \c*0.5) .. (-2.5, \c);
-			\draw[postaction={decorate}] (0,0) .. controls (1.5, -\c*0.5) .. (2.5, -\c);
-			\draw[postaction={decorate}] (0,0) .. controls (-1.5, -\c*0.5) .. (-2.5, -\c);
+		\foreach \c in {0.5, 1.2, 2.0, 2.8} {
+			\draw[postaction={decorate}] (0,0) to[out=90, in=180] (2.5, \c);
+			\draw[postaction={decorate}] (0,0) to[out=90, in=0] (-2.5, \c);
+			\draw[postaction={decorate}] (0,0) to[out=-90, in=180] (2.5, -\c);
+			\draw[postaction={decorate}] (0,0) to[out=-90, in=0] (-2.5, -\c);
 		}
 		\draw[postaction={decorate}] (0,0) -- (0,2.5);
 		\draw[postaction={decorate}] (0,0) -- (0,-2.5);
+		\draw[postaction={decorate}] (0,0) -- (2.5,0);
+		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
 	\end{tikzpicture}
 	
 	\small Рис. 2. Неустойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 > 0, \lambda_2 > 0$
@@ -84,16 +88,16 @@
 		\begin{tikzpicture}[scale=1, decoration={markings, mark=at position 0.5 with {\arrow{stealth}}}]
 			\draw[-stealth] (-3,0) -- (3,0);
 			\draw[-stealth] (0,-3) -- (0,3);
-			\foreach \c in {0.3, 0.8, 1.5} {
-				\draw[postaction={decorate}] (-2.8, \c) .. controls (0, \c) and (\c, 0) .. (\c, 2.8);
-				\draw[postaction={decorate}] (2.8, \c) .. controls (0, \c) and (-\c, 0) .. (-\c, 2.8);
-				\draw[postaction={decorate}] (2.8, -\c) .. controls (0, -\c) and (-\c, 0) .. (-\c, -2.8);
-				\draw[postaction={decorate}] (-2.8, -\c) .. controls (0, -\c) and (\c, 0) .. (\c, -2.8);
+			\foreach \c in {0.3, 0.8, 1.5, 2.2} {
+				\draw[postaction={decorate}] (\c, 2.8) .. controls (\c, \c) .. (2.8, \c);
+				\draw[postaction={decorate}] (-\c, 2.8) .. controls (-\c, \c) .. (-2.8, \c);
+				\draw[postaction={decorate}] (\c, -2.8) .. controls (\c, -\c) .. (2.8, -\c);
+				\draw[postaction={decorate}] (-\c, -2.8) .. controls (-\c, -\c) .. (-2.8, -\c);
 			}
-			\draw[postaction={decorate}] (-2.8,0) -- (0,0);
-			\draw[postaction={decorate}] (2.8,0) -- (0,0);
-			\draw[postaction={decorate}] (0,0) -- (0,2.8);
-			\draw[postaction={decorate}] (0,0) -- (0,-2.8);
+			\draw[postaction={decorate}] (0,2.8) -- (0,0);
+			\draw[postaction={decorate}] (0,-2.8) -- (0,0);
+			\draw[postaction={decorate}] (0,0) -- (2.8,0);
+			\draw[postaction={decorate}] (0,0) -- (-2.8,0);
 		\end{tikzpicture}
 		
 		\small Рис. 3. Седло. $\lambda_1, \lambda_2 \in \mathbb{R}, \lambda_1 \neq \lambda_2, \lambda_1 > 0, \lambda_2 < 0$. Неустойчива
@@ -101,11 +105,11 @@
 \end{center}
 
 \vspace{0.5cm}
-2) Корни характеристического ур-ния \eqref{eq:224} комплексные: $\lambda_1 = p + iq$, $\lambda_2 = p - iq$
+3) Корни характеристического ур-ния \eqref{eq:224} комплексные: $\lambda_1 = p + iq$, $\lambda_2 = p - iq$
 \begin{itemize}
-	\item[(а)] $p < 0$, $q \neq 0$. Точка покоя асимптотически устойчива (устойчивый фокус). \textcolor{orange}{рис. 4}
-	\item[(б)] $p > 0$, $q \neq 0$. Точка покоя неустойчива (неустойчивый фокус). \textcolor{orange}{рис. 5}
-	\item[(в)] $p = 0$, $q \neq 0$. Точка покоя устойчива (центр). \textcolor{orange}{рис. 6}
+	\item[(а)] $p < 0, q \neq 0$. Точка покоя асимптотически устойчива (устойчивый фокус) \textcolor{orange}{рис. 4}
+	\item[(б)] $p > 0, q \neq 0$. Точка покоя неустойчива (неустойчивый фокус) \textcolor{orange}{рис. 5}
+	\item[(в)] $p = 0, q \neq 0$. Точка покоя устойчива (центр) \textcolor{orange}{рис. 6}
 \end{itemize}
 
 \vspace{0.5cm}
@@ -115,7 +119,7 @@
 	\begin{tikzpicture}[scale=1, decoration={markings, mark=at position 0.4 with {\arrow{stealth}}, mark=at position 0.8 with {\arrow{stealth}}}]
 		\draw[-stealth] (-2.5,0) -- (2.5,0);
 		\draw[-stealth] (0,-2.5) -- (0,2.5);
-		\draw[postaction={decorate}, domain=0:5*pi, samples=150, variable=\t] plot ({2.2*exp(-0.15*\t)*cos(\t r)}, {2.2*exp(-0.15*\t)*sin(\t r)});
+		\draw[postaction={decorate}, domain=0:5*pi, samples=200, variable=\t] plot ({2.5*exp(-0.1*\t)*cos(-\t r)}, {2.5*exp(-0.1*\t)*sin(-\t r)});
 	\end{tikzpicture}
 	
 	\small Рис. 4. Устойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}$, $\lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha < 0, \beta \neq 0$. Асимптотически устойчива
@@ -125,10 +129,10 @@
 	\begin{tikzpicture}[scale=1, decoration={markings, mark=at position 0.4 with {\arrow{stealth}}, mark=at position 0.8 with {\arrow{stealth}}}]
 		\draw[-stealth] (-2.5,0) -- (2.5,0);
 		\draw[-stealth] (0,-2.5) -- (0,2.5);
-		\draw[postaction={decorate}, domain=5*pi:0, samples=150, variable=\t] plot ({2.2*exp(-0.15*\t)*cos(\t r)}, {2.2*exp(-0.15*\t)*sin(\t r)});
+		\draw[postaction={decorate}, domain=0:5*pi, samples=200, variable=\t] plot ({0.5*exp(0.1*\t)*cos(-\t r)}, {0.5*exp(0.1*\t)*sin(-\t r)});
 	\end{tikzpicture}
 	
-	\small Рис. 5. Неустойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}$, $\lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha > 0, \beta \neq 0$.
+	\small Рис. 5. Неустойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}, \lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha > 0, \beta \neq 0$.
 \end{minipage}
 
 \vspace{0.5cm}
@@ -139,7 +143,7 @@
 			\draw[-stealth] (-2.5,0) -- (2.5,0);
 			\draw[-stealth] (0,-2.5) -- (0,2.5);
 			\foreach \r in {0.5, 1.2, 2.0} {
-				\draw[postaction={decorate}] (\r,0) arc (0:360:\r);
+				\draw[postaction={decorate}] (\r,0) arc (0:-360:\r);
 			}
 		\end{tikzpicture}
 		
@@ -148,7 +152,7 @@
 \end{center}
 
 \vspace{0.5cm}
-3) Корни $\lambda_1 = \lambda_2$ кратные!
+3) Корни $\lambda_1 = \lambda_2$ кратные !
 \begin{itemize}
 	\item[(а)] $\lambda_1 = \lambda_2 < 0$. Точка покоя асимптотически устойчива (устойчивый узел) \textcolor{orange}{рис. 7, 8}
 	\item[(б)] $\lambda_1 = \lambda_2 > 0$. Точка покоя неустойчива (неустойчивый узел) \textcolor{orange}{рис. 9, 10}
@@ -161,17 +165,17 @@
 	\begin{tikzpicture}[scale=0.9, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
 		\draw[-stealth] (-2.5,0) -- (2.5,0);
 		\draw[-stealth] (0,-2.5) -- (0,2.5);
-		\foreach \c in {0.5, 1.2, 2} {
-			\draw[postaction={decorate}] (2.5, \c) .. controls (0.5, \c) and (0.2, 0) .. (0,0);
-			\draw[postaction={decorate}] (2.5, -\c) .. controls (0.5, -\c) and (0.2, 0) .. (0,0);
-			\draw[postaction={decorate}] (-2.5, \c) .. controls (-0.5, \c) and (-0.2, 0) .. (0,0);
-			\draw[postaction={decorate}] (-2.5, -\c) .. controls (-0.5, -\c) and (-0.2, 0) .. (0,0);
+		\foreach \c in {0.5, 1.2, 2.0} {
+			\draw[postaction={decorate}] (2.5, \c) to[out=180, in=0] (0,0);
+			\draw[postaction={decorate}] (2.5, -\c) to[out=180, in=0] (0,0);
+			\draw[postaction={decorate}] (-2.5, \c) to[out=0, in=180] (0,0);
+			\draw[postaction={decorate}] (-2.5, -\c) to[out=0, in=180] (0,0);
 		}
 		\draw[postaction={decorate}] (2.5,0) -- (0,0);
 		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
-	\small Рис. 7. Точка покоя --- вырожденный устойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$. Асимптотически устойчива.
+	\small Асимптотически устойчива. \\ Рис. 7. Точка покоя --- вырожденный устойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$.
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 	\centering
@@ -183,6 +187,8 @@
 		}
 		\draw[postaction={decorate}] (0,2.5) -- (0,0);
 		\draw[postaction={decorate}] (0,-2.5) -- (0,0);
+		\draw[postaction={decorate}] (2.5,0) -- (0,0);
+		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
 	\small Рис. 8. Устойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$. Асимптотически устойчива.
@@ -195,11 +201,11 @@
 	\begin{tikzpicture}[scale=0.9, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
 		\draw[-stealth] (-2.5,0) -- (2.5,0);
 		\draw[-stealth] (0,-2.5) -- (0,2.5);
-		\foreach \c in {0.5, 1.2, 2} {
-			\draw[postaction={decorate}] (0,0) .. controls (0.2, 0) and (0.5, \c) .. (2.5, \c);
-			\draw[postaction={decorate}] (0,0) .. controls (0.2, 0) and (0.5, -\c) .. (2.5, -\c);
-			\draw[postaction={decorate}] (0,0) .. controls (-0.2, 0) and (-0.5, \c) .. (-2.5, \c);
-			\draw[postaction={decorate}] (0,0) .. controls (-0.2, 0) and (-0.5, -\c) .. (-2.5, -\c);
+		\foreach \c in {0.5, 1.2, 2.0} {
+			\draw[postaction={decorate}] (0,0) to[out=0, in=180] (2.5, \c);
+			\draw[postaction={decorate}] (0,0) to[out=0, in=180] (2.5, -\c);
+			\draw[postaction={decorate}] (0,0) to[out=180, in=0] (-2.5, \c);
+			\draw[postaction={decorate}] (0,0) to[out=180, in=0] (-2.5, -\c);
 		}
 		\draw[postaction={decorate}] (0,0) -- (2.5,0);
 		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
@@ -217,13 +223,19 @@
 		}
 		\draw[postaction={decorate}] (0,0) -- (0,2.5);
 		\draw[postaction={decorate}] (0,0) -- (0,-2.5);
+		\draw[postaction={decorate}] (0,0) -- (2.5,0);
+		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
 	\end{tikzpicture}
 	
 	\small Рис. 10. Неустойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda > 0$.
 \end{minipage}
 
 \vspace{0.5cm}
-\begin{example}
+\begin{itemize}
+	\item \textbf{Пример 1}
+\end{itemize}
+
+\begin{example}{Пример 1}{ex1}
 	Определим характер точки покоя $(0,0)$ системы:
 	\begin{equation*}
 		\begin{cases}
@@ -262,71 +274,91 @@
 \end{equation*}
 \begin{equation*}
 	\iff \lambda^2 - (a_{11} + a_{22})\lambda + a_{11}a_{22} - a_{12}a_{21} = 0 
-	\iff \boxed{\lambda^2 + b\lambda + \Delta = 0}
+	\iff \text{\colorbox{yellow!30}{$\lambda^2 + b\lambda + \Delta = 0$}}
 \end{equation*}
 
 Рассмотрим плоскость с прямоугольными декартовыми координатами $\Delta$ и $b$ и отметим на ней области, соответствующие различным типам точек покоя.
 
 Из классификации следует, что условиями устойчивости точки покоя являются $\Re \lambda_1 < 0$ и $\Re \lambda_2 < 0$. Они выполняются при $\Delta > 0, b > 0$, для точек I четверти.
 
-\begin{equation*}
-	\left[
-	\begin{array}{l}
-		\text{По т. Виета, } \Delta = \lambda_1 \lambda_2 > 0 \implies \text{корни одного знака} \\
-		\lambda_1 + \lambda_2 = -b < 0 \implies \lambda_1 < 0, \lambda_2 < 0
-	\end{array}
-	\right] \xrightarrow{\text{дискриминант } \lambda^2 + b\lambda + \Delta = 0}
-\end{equation*}
-\begin{equation*}
-	\left[
-	\begin{array}{l}
-		\lambda_1 = p+iq, \lambda_2 = p-iq, \quad p < 0 \\
-		\Delta = \lambda_1 \lambda_2 = (p+iq)(p-iq) = p^2 + q^2 > 0 \\
-		\lambda_1 + \lambda_2 = 2p = -b < 0 \implies b > 0
-	\end{array}
-	\right]
-\end{equation*}
+\vspace{0.5cm}
+\noindent
+\begin{minipage}{0.48\textwidth}
+	\begin{equation*}
+		\left[
+		\begin{array}{l}
+			\text{По т. Виета, } \Delta = \lambda_1 \lambda_2 > 0 \implies \text{корни одного знака} \\
+			\lambda_1 + \lambda_2 = -b < 0 \implies \lambda_1 < 0, \lambda_2 < 0
+		\end{array}
+		\right]
+	\end{equation*}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+	\begin{equation*}
+		\left[
+		\begin{array}{l}
+			\lambda_1 = p+iq, \lambda_2 = p-iq, \quad p < 0 \\
+			\Delta = \lambda_1 \lambda_2 = (p+iq)(p-iq) = p^2 + q^2 > 0 \\
+			\lambda_1 + \lambda_2 = 2p = -b < 0 \implies b > 0
+		\end{array}
+		\right]
+	\end{equation*}
+\end{minipage}
+
+\begin{center}
+	$\downarrow$ \text{дискриминант } $\lambda^2 + b\lambda + \Delta = 0$
+\end{center}
 
 Если $\lambda_1, \lambda_2$ - комплексные, то есть $\mathcal{D} < 0$, точка покоя будет типа фокуса. Этому условию удовлетворяют точки, лежащие между ветвями $b^2 = 4\Delta$ и не принадлежат оси $O\Delta$ ($b^2 < 4\Delta, b \neq 0$).
 
 \begin{center}
 	\colorbox{cyan!30}{Типы точек покоя на $bO\Delta$}
 	
+	\vspace{0.5cm}
 	\begin{tikzpicture}[scale=1.5]
-		% Хач (hatching) areas conceptually
-		\fill[blue!5] (0,0) parabola (2.5, 3.16) -- (0,3.16) -- cycle;
-		\fill[blue!5] (0,0) parabola (2.5, -3.16) -- (0,-3.16) -- cycle;
+		% Area Delta < 0
+		\fill[orange!10] (-2, -3.2) rectangle (0, 3.2);
+		
+		% Area inside parabola
+		\begin{scope}
+			\clip (0,0) parabola (2.5, 3.16) -- (2.5, -3.16) parabola[bend at end] (0,0);
+			\fill[cyan!10] (0,-3.5) rectangle (2.5, 3.5);
+		\end{scope}
+		
+		% Area outside parabola (b > 0)
+		\begin{scope}
+			\clip (0,0) parabola (2.5, 3.16) -- (0, 3.16) -- cycle;
+			\fill[blue!10] (0,0) rectangle (2.5, 3.5);
+		\end{scope}
+		
+		% Area outside parabola (b < 0)
+		\begin{scope}
+			\clip (0,0) parabola (2.5, -3.16) -- (0, -3.16) -- cycle;
+			\fill[blue!10] (0,0) rectangle (2.5, -3.5);
+		\end{scope}
 		
 		% Axes
-		\draw[-stealth, thick] (-2,0) -- (3,0) node[right] {$\Delta$};
+		\draw[-stealth, thick] (-2.5,0) -- (3,0) node[right] {$\Delta$};
 		\draw[-stealth, thick] (0,-3.5) -- (0,3.5) node[above] {$b$};
 		\node[below left] at (0,0) {$O$};
 		
 		% Parabola
-		\draw[thick, orange, domain=0:2.5, samples=100] plot (\x, {2*sqrt(\x)}) node[right] {$b^2=4\Delta$};
+		\draw[thick, orange, domain=0:2.5, samples=100] plot (\x, {2*sqrt(\x)}) node[right, black] {$b^2=4\Delta$};
 		\draw[thick, orange, domain=0:2.5, samples=100] plot (\x, {-2*sqrt(\x)});
 		
 		% Labels
-		\node at (-1, 1.5) {седла};
-		\node[rotate=45] at (1.2, 2.5) {устойчивые узлы};
-		\node[rotate=-45] at (1.2, -2.5) {неустойчивые узлы};
+		\node[fill=orange!10, inner sep=1pt] at (-1.2, 1.5) {седла};
 		
-		\node at (1.5, 1) {устойчивые фокусы};
-		\node at (1.5, -1) {неустойчивые фокусы};
+		\node[fill=cyan!10, inner sep=1pt] at (1.2, 1.2) {устойчивые фокусы};
+		\node[fill=cyan!10, inner sep=1pt] at (1.2, -1.2) {неустойчивые фокусы};
 		
-		% Decorate regions
-		\foreach \x in {0.2, 0.6, 1.0, 1.4, 1.8, 2.2} {
-			\draw[blue, thin] (\x, {0.1}) -- (\x, {2*sqrt(\x)-0.1});
-			\draw[blue, thin] (\x, {-0.1}) -- (\x, {-2*sqrt(\x)+0.1});
-		}
-		\foreach \x in {-1.8, -1.4, -1.0, -0.6, -0.2} {
-			\draw[orange, thin] (\x, -3) -- (\x, 3);
-		}
+		\node[rotate=45, fill=blue!10, inner sep=1pt] at (0.8, 2.5) {устойчивые узлы};
+		\node[rotate=-45, fill=blue!10, inner sep=1pt] at (0.8, -2.5) {неустойчивые узлы};
 	\end{tikzpicture}
 \end{center}
 
 Точки полуоси $b=0$, для которых $\Delta > 0$ соответствуют точкам покоя типа центра. Точки, расположенные вне параболы $b^2 = 4\Delta$ (т.е. $b^2 > 4\Delta$), соответствуют точкам покоя типа узла.
 
-Область $\Delta < 0$ пл-ти $bO\Delta$ - точки типа седла.
+Область $\Delta < 0$ пл-ти $bO\Delta$ --- точки типа седла.
 
 $\mathcal{D} = b^2 - 4\Delta > 0 \implies$ корни вещественные по т. Виета.
