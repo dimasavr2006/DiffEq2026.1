@@ -95,7 +95,7 @@ $\begin{cases} x = \frac{d}{c} + \tilde{x} \\ y = \frac{a}{b} + \tilde{y} \end{c
 	\centering
 	\begin{tikzpicture}[scale=0.9]
 		\draw[-stealth] (0,0) -- (6,0) node[right] {время};
-		\draw[-stealth] (0,-0.5) -- (0,3) node[above] {размер\\популяции};
+		\draw[-stealth] (0,-0.5) -- (0,3) node[above, align=center] {размер\\популяции};
 		
 		% Prey
 		\draw[blue, thick, smooth, samples=100, domain=0:5.5] plot (\x, {1.5 + 0.8*sin(\x*100)});
@@ -148,11 +148,11 @@ $\begin{cases} x = \frac{d}{c} + \tilde{x} \\ y = \frac{a}{b} + \tilde{y} \end{c
 		\draw[blue, thick, postaction={decorate}] (0,0) circle (1);
 		
 		% Inner spiral
-		\draw[blue, domain=0:4*pi, samples=100, smooth, postaction={decorate}] plot ({0.1*exp(0.1*\x)*cos(\x r)}, {0.1*exp(0.1*\x)*sin(\x r)});
+		\draw[blue, domain=0:6, samples=60, postaction={decorate}] plot ({0.1*exp(0.1*\x)*cos(\x r)}, {0.1*exp(0.1*\x)*sin(\x r)});
 		
 		% Outer spirals
-		\draw[blue, domain=0:2*pi, samples=100, smooth, postaction={decorate}] plot ({(1 + 0.5*exp(-0.5*\x))*cos(\x r + 2)}, {(1 + 0.5*exp(-0.5*\x))*sin(\x r + 2)});
-		\draw[blue, domain=0:2*pi, samples=100, smooth, postaction={decorate}] plot ({(1 + 0.5*exp(-0.5*\x))*cos(\x r - 2)}, {(1 + 0.5*exp(-0.5*\x))*sin(\x r - 2)});
+		\draw[blue, domain=0:6, samples=60, postaction={decorate}] plot ({(1 + 0.5*exp(-0.5*\x))*cos(\x r + 2)}, {(1 + 0.5*exp(-0.5*\x))*sin(\x r + 2)});
+		\draw[blue, domain=0:6, samples=60, postaction={decorate}] plot ({(1 + 0.5*exp(-0.5*\x))*cos(\x r - 2)}, {(1 + 0.5*exp(-0.5*\x))*sin(\x r - 2)});
 	\end{tikzpicture}
 \end{minipage}
 \begin{minipage}{0.65\textwidth}
@@ -397,7 +397,7 @@ $\begin{cases} x = \frac{d}{c} + \tilde{x} \\ y = \frac{a}{b} + \tilde{y} \end{c
 	\item Качественное поведение систем 2-го порядка определяется типом ее точек равновесия и периодическими орбитами + некоторые другие свойства устойчивости.
 	\item \underline{Вопрос:} Сохранит ли система свои характеристики при бесконечно малых возмущениях?
 	\item Если система сохраняет эти свойства, то она называется \textbf{структурно-устойчивой}.
-	\item \underline{Пример:} систему $\begin{cases} \dot{x}_1 = \mu - x_1^2 \\ \dot{x}_2 = -x_2 \end{cases} \quad (297) \leftarrow$ зависит от параметра $\mu$.
+	\item \underline{Пример:} систему $\begin{cases} \dot{x}_1 = \mu - x_1^2 \\ \dot{x}_2 = -x_2 \end{cases} \quad (297) \label{eq:297} \leftarrow$ зависит от параметра $\mu$.
 \end{itemize}
 
 $\begin{cases} \dot{x}_1 = 0 \\ \dot{x}_2 = 0 \end{cases} \implies \begin{cases} x_1^2 = \mu \\ x_2 = 0 \end{cases}$ \\

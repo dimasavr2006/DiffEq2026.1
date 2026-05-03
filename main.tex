@@ -73,10 +73,17 @@
 	fonttitle=\bfseries
 }{def}
 
-\newtcbtheorem[no counter]{example}{Пример}{
+\newtcbtheorem[no counter]{exampleth}{Пример}{
 	enhanced, breakable, colback=excolor!5, colframe=excolor,
 	fonttitle=\bfseries, sharp corners
 }{ex}
+
+% Simple example environment without required arguments
+\newenvironment{example}[1][]{%
+	\begin{exampleth}{#1}{}%
+}{%
+	\end{exampleth}%
+}
 
 \newtcolorbox{nb}{
 	enhanced, breakable, colback=nbcolor!5, colframe=nbcolor,
@@ -107,7 +114,7 @@
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}} 
 
 \newcommand{\subjectName}{Дифференциальные уравнения} 
-\setlength{\headheight}{15pt}
+\setlength{\headheight}{25.22153pt}
 
 % ВЕРХНИЙ КОЛОНТИТУЛ
 \lhead{\small \textsc{\subjectName}} % Слева название предмета
