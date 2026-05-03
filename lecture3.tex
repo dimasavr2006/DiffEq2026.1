@@ -1,0 +1,358 @@
+\noindent Запишем систему первого приближения:
+\begin{equation} \label{eq:249_new}
+	\begin{cases}
+		\dv{x}{t} = y \\
+		\dv{y}{t} = -\frac{1}{LC}x - \frac{R}{L}y
+	\end{cases} \quad (249)
+\end{equation}
+
+Характеристическое ур-ние для (249): 
+\begin{equation*}
+	\det \begin{pmatrix} -\lambda & 1 \\ -\frac{1}{LC} & -\frac{R}{L} - \lambda \end{pmatrix} = 0 \iff \lambda^2 + \frac{R}{L}\lambda + \frac{1}{LC} = 0 \iff \lambda = \frac{-\frac{R}{L} \pm \sqrt{\frac{R^2}{L^2} - \frac{4}{LC}}}{2} \iff
+\end{equation*}
+\begin{equation} \label{eq:250_new}
+	\iff \lambda = -\frac{R}{2L} \pm \sqrt{\frac{R^2}{4L^2} - \frac{1}{LC}} \quad (250)
+\end{equation}
+
+Если $D < 0$, т.е. $\frac{R^2}{4L^2} < \frac{1}{LC} \iff R^2 < \frac{4L}{C}$, то ур-ние (250) имеет комплексные корни с отрицательной вещественной частью $\qty(-\frac{R}{2L}) \implies$ точка $(0,0)$ системы (249) и (248) асимптотически устойчива. Если $D > 0$, т.е. $R^2 > \frac{4L}{C}$, то точка $(0,0)$ асимптотически устойчива, т.к. $\lambda < 0$.
+
+\section{§ 6.6. Устойчивость решений дифференциальных уравнений по отношению к изменению правых частей ур-ния}
+
+\begin{itemize}
+	\item Дифф. уравнения:
+	\begin{align}
+		y' &= f(x,y) \quad (251) \label{eq:251_new} \\
+		y' &= f(x,y) + \theta(x,y) \quad (252) \label{eq:252_new}
+	\end{align}
+	где ф-ии $f(x,y)$ и $\theta(x,y)$ непрерывны в замкнутой области $\overline{G}$ плоскости $xOy$ и ф-ция $f(x,y)$ имеет в этой области непрерывную частную производную $\pdv{f}{y}$.
+\end{itemize}
+
+\begin{theorem}{Об оценке разности решений при малом изменении правой части ур-ния}{diff_eq_estimation}
+	Пусть в области $\overline{G}$ выполняется неравенство $|\theta(x,y)| \le \varepsilon$. \\
+	Если $y = \varphi(x)$ и $y = \psi(x)$ есть решения ур-ний \eqref{eq:251_new} и \eqref{eq:252_new} соответственно, удовлетворяющие одному и тому же начальному условию $\eval{\varphi}_{x=x_0} = \eval{\psi}_{x=x_0} = y_0$, то:
+	\begin{equation} \label{eq:253_new}
+		|\varphi(x) - \psi(x)| \le \frac{\varepsilon}{M} \qty( \exp(M|x-x_0|) - 1 ), \quad \text{где } M = \max_{(x,y) \in \overline{G}} \abs{\pdv{f}{y}} \quad (253)
+	\end{equation}
+\end{theorem}
+
+\noindent \textbf{23.03}
+\section{Критерий Рауса-Гурвица}
+
+\begin{itemize}
+	\item Пусть ЛДУ с постоянными вещественными коэффициентами
+	\begin{equation*}
+		a_0 y^{(n)} + \dots + a_n y = 0, \quad \text{где } a_0, \dots, a_n = \text{const}, \quad a_0 > 0
+	\end{equation*}
+	$y = 0$ асимптотически устойчиво, если все корни характеристического уравнения
+	\begin{equation*}
+		D(\lambda) = a_0 \lambda^n + \dots + a_n = 0
+	\end{equation*}
+	имеют отрицательную часть.
+	
+	\item \colorbox{yellow!30}{\textbf{Критерий:}} Чтобы корни уравнения имели отрицательные вещественные части $\iff$ были положительны все главные диагональные миноры матрицы Гурвица.
+\end{itemize}
+
+\begin{minipage}{0.3\textwidth}
+	\begin{equation*}
+		\begin{pmatrix}
+			a_1 & a_0 & 0 & \dots & 0 \\
+			a_3 & a_2 & a_1 & \dots & 0 \\
+			a_5 & a_4 & a_3 & \dots & 0 \\
+			\dots & \dots & \dots & \dots & \dots \\
+			0 & \dots & \dots & \dots & a_n
+		\end{pmatrix}
+	\end{equation*}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+	\textbf{Как составить:}
+	\begin{itemize}
+		\item Главная диагональ: $a_1 - a_n$
+		\item Столбцы послед. из коэффициентов с нечет/четными индексами, причем в них последний включен $a_0$
+	\end{itemize}
+\end{minipage}
+
+Все остальные элементы матрицы отвеч. коэффиц. с индексами большими $n$ / меньшими $0$, равны $0$.
+
+Главные диагональные миноры имеют вид: 
+\begin{equation*}
+	\Delta_1 = a_1, \quad \Delta_2 = \begin{vmatrix} a_1 & a_0 \\ a_3 & a_2 \end{vmatrix}, \quad \Delta_3 = \dots
+\end{equation*}
+
+Для выполнения критерия Рауса-Гурвица необходимо, чтобы $\Delta_1 > 0, \Delta_2 > 0, \dots$ \\
+Т.к. $\Delta_n = a_n \Delta_{n-1}$, то условие $\Delta_n > 0$ можно заменить $a_n > 0$.
+
+\begin{itemize}
+	\item \underline{\textbf{Пример 1:}} $y^{(IV)} + 5y''' + 13y'' + 19y' + 10y = 0$ \\
+	$f(\lambda) = \lambda^4 + 5\lambda^3 + 13\lambda^2 + 19\lambda + 10 = 0$
+\end{itemize}
+
+\begin{equation*}
+	\Delta_3 = \begin{vmatrix} 5 & 1 & 0 \\ 14 & 13 & 5 \\ 0 & 10 & 19 \end{vmatrix} = 424 > 0 \hspace{1cm}
+	\Delta_2 = \begin{vmatrix} 5 & 1 \\ 14 & 13 \end{vmatrix} = 46 > 0 \hspace{1cm}
+	\Delta_1 > 0
+\end{equation*}
+
+\section{Геометрический критерий устойчивости. Критерий Михайлова}
+
+\begin{itemize}
+	\item Пусть ЛДУ $n$ порядка с $a_i = \text{const}$. \\
+	Характеристическое ур-ние по критерию Михайлова позволяет найти корни на комплексной плоскости и узнать устойчивость $y=0$.
+	\item Пусть $\lambda = i\omega$: 
+	\begin{equation*}
+		f(i\omega) = u(\omega) + i v(\omega), \quad \begin{aligned}
+			u(\omega) &= a_n - a_{n-2}\omega^2 - a_{n-4}\omega^4 \dots \\
+			v(\omega) &= a_{n-1}\omega - a_{n-3}\omega^3 \dots
+		\end{aligned}
+	\end{equation*}
+\end{itemize}
+
+Величины $f(i\omega)$ при заданных параметрах $\omega$ можно изобразить в виде вектора на плоскости $u, v$ с началом координат. \\
+При изменении $\omega$ в интервале $(-\infty; +\infty)$ конец этого вектора опишет кривую Михайлова.
+
+\begin{minipage}{0.3\textwidth}
+	\begin{tikzpicture}[scale=0.8, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
+		\draw[-stealth] (-2.5,0) -- (2.5,0) node[right] {$u$};
+		\draw[-stealth] (0,-2.5) -- (0,2.5) node[above] {$v$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw[thick, blue, postaction={decorate}, domain=0:2*pi, samples=100] plot ({1.5*cos(\x r)*exp(-0.1*\x)}, {1.5*sin(\x r)*exp(-0.1*\x)});
+		
+		\node[blue] at (1,-1) {$f(i\omega)$};
+		\draw (1.5,0.1) -- (1.5,-0.1) node[below] {$1$};
+	\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.65\textwidth}
+	Т.к. $u(\omega)$ --- четная ф-ия, то кривая $M$ симметрична от-но $Ou$ и достаточно построить часть кривой $[0; +\infty)$. \\
+	Если $f(\lambda)$ степени $n$ имеет $m$ корней с положительными вещественными частями и $n-m$ корней с отрицательн., то угол поворота $f(i\omega)$ при $\omega \in [0, +\infty)$ равен $\varphi = (n - 2m)\frac{\pi}{2}$.
+\end{minipage}
+
+\begin{itemize}
+	\item \colorbox{orange!30}{\textbf{Критерий:}} Для устойчивости $y=0$ необходимо и достаточно, чтобы
+	\begin{enumerate}
+		\item $f(i\omega)$ при изменении $\omega$ от $0$ до $+\infty$ совершит поворот $\varphi = n\frac{\pi}{2}$.
+		\item Годограф $f(i\omega)$ при $\omega \in [0, +\infty)$ не проходит через $(0,0)$.
+	\end{enumerate}
+\end{itemize}
+
+\begin{itemize}
+	\item \colorbox{yellow!30}{\textbf{Замечание:}} Следовательно необходимо, чтобы все корни $u(\omega)=0$ и $v(\omega)=0$ были веществ. и перемеж. друг с другом (между любыми двумя корнями одного уравнения должен быть корень другого уравнения).
+\end{itemize}
+
+\begin{itemize}
+	\item \underline{\textbf{Пример 2:}} $y^{(IV)} + y''' + 4y'' + y' + y = 0$ \\
+	$f(\lambda) = \lambda^4 + \lambda^3 + 4\lambda^2 + \lambda + 1 = 0$
+\end{itemize}
+
+Пусть $\lambda = i\omega$: 
+\begin{equation*}
+	f(i\omega) = \omega^4 - i\omega^3 - 4\omega^2 + i\omega + 1
+\end{equation*}
+\begin{equation*}
+	u(\omega) = \omega^4 - 4\omega^2 + 1 \hspace{2cm} v(\omega) = -\omega^3 + \omega = \omega(1-\omega)(1+\omega)
+\end{equation*}
+
+\begin{minipage}{0.35\textwidth}
+	\begin{tikzpicture}[scale=0.8, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}]
+		\draw[-stealth] (-2.5,0) -- (2.5,0) node[right] {$u$};
+		\draw[-stealth] (0,-1) -- (0,2.5) node[above] {$v$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw (1,0.1) -- (1,-0.1) node[below] {$1$};
+		\draw (-2,0.1) -- (-2,-0.1) node[below] {$-2$};
+		
+		\draw[thick, blue, postaction={decorate}] (1,0) .. controls (1.5,1.5) and (-0.5,2) .. (-2,0);
+		\draw[thick, blue, dashed] (-2,0) .. controls (-3,-1) and (-1,-1) .. (0,-0.5);
+	\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+	$\omega = \pm \sqrt{2 \pm \sqrt{3}}$ \\
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{c|c|c|c|c|c}
+		$\omega$ & $0$ & & $\sqrt{2-\sqrt{3}}$ & $1$ & $\sqrt{2+\sqrt{3}}$ \\
+		\hline
+		$u$ & $1$ & & $0$ & $-2$ & $0$ \\
+		\hline
+		$v$ & $0$ & $>0$ & & $0$ & $<0$
+	\end{tabular}
+	
+	$\lim_{\omega \to \infty} \frac{v}{u} = \lim_{\omega \to \infty} \frac{-\omega^3+\omega}{\omega^4-4\omega^2+1} = 0$
+\end{minipage}
+
+$\varphi = 4 \cdot \frac{\pi}{2} \quad n=4, m=0 \implies$ все корни $\lambda_i$ лежат в левой полукоординате $\implies$ (th 2).
+
+\vspace{0.5cm}
+\noindent \textbf{30.03}
+\section{Уравнения с малым параметром при производной}
+
+\begin{itemize}
+	\item ДУ: $\dv{x}{t} = F(t, x(t), \varepsilon) \quad (271)$, \quad где $\varepsilon$ --- параметр.
+	\item Если функция $F(t,x,\varepsilon)$ в некоторой замкнутой области изменения $t, x, \varepsilon$ непрерывна по совокупности аргументов и удовлетворяет условию Липшица:
+	$|F(t,x_2,\varepsilon) - F(t,x_1,\varepsilon)| \le N|x_2 - x_1|$, где $N$ не зависит от $t, x, \varepsilon$, то решение ур-ния (271) непрерывно зависит от $\varepsilon$ (по th о непрерывной зависимости решений задачи Коши от параметра).
+	\item \underline{Замечание:} Здесь речь идет о решении задачи Коши для ур-ния (271) с начальн. условиями, лежащими в указанной области (где выполнено условие Липшица).
+\end{itemize}
+
+Во многих задачах физики приходится рассматривать ур-ния вида: $\varepsilon \cdot \dv{x}{t} = f(t,x) \quad (272)$, где $\varepsilon$ --- малый параметр. 
+
+Разделим обе части ур-ния (272) на $\varepsilon$:
+\begin{equation}
+	\dv{x}{t} = \frac{1}{\varepsilon} f(t,x) \quad (273)
+\end{equation}
+
+\begin{itemize}
+	\item \underline{Вопрос:} при каких условиях для малых значений $|\varepsilon|$ в уравнении (272) можно отбросить член $\varepsilon \dv{x}{t}$ и в качестве приближения к решению ур-ния (272), рассматривать решение так называемого <<вырожденного уравнения>>: $f(t,x) = 0 \quad (274)$.
+	
+	\textit{(на полях: есть разрыв при $\varepsilon=0$, т.е. нельзя воспользоваться th о непрерывной зависимости решений от параметра $\varepsilon$).}
+\end{itemize}
+
+Пусть для определенности $\varepsilon > 0$ и пусть вырожденное ур-ние (274) имеет лишь одно решение $x=\varphi(t)$ /рассматриваем ту часть пл-ти $(x,t)$, где решение одно/
+
+\begin{definition}{Устойчивость вырожденного уравнения}{def_degenerate}
+	Решение $x=\varphi(t)$ вырожденного ур-ния (274) называется устойчивым, если при $\varepsilon \to 0$ решение полного ур-ния (272) стремится к нему. Решение $x=\varphi(t)$ ур-ния (274) неустойчиво, если $\varepsilon \to 0$ решение полного ур-ния (272) удаляется от него.
+\end{definition}
+
+\begin{itemize}
+	\item Ситуация с устойчивостью/неустойчивостью решения определяется поведением ф-ии $f(t,x)$ в окрестности кривой $x=\varphi(t)$.
+\end{itemize}
+
+Если при переходе через график решения $x=\varphi(t)$ вырожденного ур-ния (274) ф-ия $f(t,x)$ с возрастанием $x$ при фиксированном $t$ меняет знак с $<<+>>$ на $<<->>$ (т.е. $\pdv{f(t,x)}{x} < 0$), то решение вырожденного ур-ния $x=\varphi(t)$ устойчиво и им можем приближенно заменить решение $x(t,\varepsilon)$ ур-ния (272), отражено на рис. 1.
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}{0.48\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=0.9]
+		\draw[-stealth] (-0.5,0) -- (5,0) node[below] {$t$};
+		\draw[-stealth] (0,-0.5) -- (0,4) node[left] {$x$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw[thick, blue] (0,1) .. controls (2,1) and (3,3.5) .. (5,3.5) node[right] {$x=\varphi(t)$};
+		
+		\foreach \x in {0.5, 1.5, 2.5, 3.5, 4.5} {
+			\draw[-stealth, blue] (\x, 3.8) -- (\x, 3.2);
+			\draw[-stealth, blue] (\x, 0.2) -- (\x, 0.8);
+		}
+		
+		\node at (2.5, 4) {$f(t,x) < 0$};
+		
+		\filldraw (1,3.5) circle (1.5pt) node[left] {$(t_0, x_0)$};
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (1,3.5) .. controls (1, 2) and (2.5, 1.5) .. (4, 3.2);
+		
+		\filldraw (3.5,0.5) circle (1.5pt) node[right] {$(\tilde{t}_0, \tilde{x}_0)$};
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (3.5,0.5) .. controls (3.5, 1.5) and (4.5, 2.5) .. (5, 3.3);
+		
+	\end{tikzpicture}
+	
+	\small Рисунок 1 --- Пример устойчивого решения вырожденного ур-ния $f(t,x)=0$
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+	\centering
+	\begin{tikzpicture}[scale=0.9]
+		\draw[-stealth] (-0.5,0) -- (5,0) node[below] {$t$};
+		\draw[-stealth] (0,-0.5) -- (0,4) node[left] {$x$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw[thick, blue] (0,1) .. controls (2,1) and (3,3.5) .. (5,3.5);
+		
+		\foreach \x in {0.5, 1.5, 2.5, 3.5, 4.5} {
+			\draw[-stealth, blue] (\x, 3.2) -- (\x, 3.8);
+			\draw[-stealth, blue] (\x, 0.8) -- (\x, 0.2);
+		}
+		
+		\node at (4, 4) {$f(t,x) > 0$};
+		\node at (4, 0.5) {$f(t,x) < 0$};
+		
+		\filldraw (1,1.5) circle (1.5pt);
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (1,1.5) .. controls (1.5, 2) and (2.5, 3) .. (2.5, 4);
+		
+		\filldraw (1.5,0.5) circle (1.5pt);
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (1.5,0.5) .. controls (1.5, 0.3) and (2, -0.2) .. (2, -0.5);
+		
+	\end{tikzpicture}
+	
+	\small Рисунок 2 --- Пример неустойчивого решения вырожденного уравнения $f(t,x)=0$
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{itemize}
+	\item Если функция $f(t,x)$ меняет знак с $<<->>$ на $<<+>>$ (т.е. $\pdv{f(t,x)}{x} > 0$), то решение $x=\varphi(t)$ вырожденного ур-ния (274) неустойчиво и заменить решение $x(t,\varepsilon)$ ДУ (274) нельзя (рис. 2).
+\end{itemize}
+
+\begin{theorem}{Достаточные условия устойчивости/неустойчивости решения вырожденного ур-ния}{th_10}
+	(1) Если $\pdv{f(t,x)}{x} < 0$ на решении $x=\varphi(t)$ ур-ния (274), то решение $x=\varphi(t)$ вырожденного уравнения \textcolor{orange}{устойчиво}. \\
+	(2) Если $\pdv{f(t,x)}{x} > 0$ на решении $x=\varphi(t)$ ур-ния (274), то решение $x=\varphi(t)$ вырожденного ур-ния \textcolor{orange}{неустойчиво}.
+\end{theorem}
+
+$\triangle$ приведено до формулировки th $\triangle$
+
+\begin{itemize}
+	\item Если вырожденное ур-ние $f(t,x)=0$ имеет несколько решений $x=\varphi_i(t), i=1,2,\dots,m$, то каждое из них должно быть исследовано на устойчивость. \\
+	При этом поведение интегральных кривых ДУ (272) при $\varepsilon \to 0$ может быть различным в зависимости от выбора начального условия --- начальной точки $(t_0, x_0)$.
+	
+	\item Полуустойчивый случай: ф-ия $f(t,x)$ при переходе через кривую $x=\varphi(t)$ не меняет знак (например, если $x=\varphi(t)$ есть корень четной кратности вырожденного ур-ния (274)). В этом случае при малом $\varepsilon$ интегральные кривые ур-ния (272) с одной стороны кривой $x=\varphi(t)$ стремятся к этой кривой, а с другой --- удаляются от нее.
+	
+	\item В первом случае мы говорим, что начальная точка $(t_0, x_0)$ принадлежит области притяжения полуустойчивого решения $x=\varphi(t)$, а во втором случае --- области отталкивания.
+\end{itemize}
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.9]
+		\draw[-stealth] (-0.5,0) -- (5,0) node[below] {$t$};
+		\draw[-stealth] (0,-0.5) -- (0,4) node[left] {$x$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw[thick, blue] (0,1) .. controls (2,1) and (3,3.5) .. (5,3.5) node[right] {$x=\varphi(t)$};
+		
+		\foreach \x in {0.5, 1.5, 2.5, 3.5, 4.5} {
+			\draw[-stealth, blue] (\x, 2.5) -- (\x, 3.1);
+			\draw[-stealth, blue] (\x, 0.5) -- (\x, 1.1);
+		}
+		
+		\node at (1.5, 3.5) {$f(t,x) > 0$};
+		\node at (4, 0.5) {$f(t,x) > 0$};
+		
+		\filldraw (0.5,0.5) circle (1.5pt) node[below] {$(t_0, x_0)$};
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (0.5,0.5) .. controls (1.5, 1.5) and (3, 2.5) .. (4, 3.4);
+		
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (1,2) .. controls (1.5, 3) and (2, 3.5) .. (2.5, 4);
+		
+		\node[right] at (5.5, 2) {Рисунок 3 --- Полуустойчивый случай};
+	\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item Напишем критерий полуустойчивости, когда интегрируемые кривые ур-ния (272) при соответствующем выборе начальной точки $(t_0, x_0)$ приближаются к решению $x=\varphi(t)$ вырожденного ур-ния и остаются в его окрестности при $t > t_0$.
+	
+	\item Пусть в окрестности полуустойчивого решения $x=\varphi(t)$ вырожденного ур-ния (274) ф-ия $f(t,x) \ge 0$. Если $\varphi'(t) > 0$, то интегральные кривые ур-ние (272) приближающиеся к кривой $x=\varphi(t)$, не могут пересечь эту кривую и остаются в ее окрестности при $t > t_0$ (начальная точка $(t_0, x_0)$ должна находиться в области притяжения полуустойчивого положения $x=\varphi(t)$ (рис. 3) область ниже кривой $x=\varphi(t)$).
+	
+	Действительно, если точка $x(t)$ оказалась бы на кривой $x=\varphi(t)$, то $\dv{x}{t}$ было бы равно $0$. А значит траектория $x=x(t)$ была бы в этой точке горизонтальной, т.е. уходила бы с кривой $x=\varphi(t)$ обратно в область притяжения.
+	
+	Если $(t_0, x_0)$ находится в области отталкивания, то соотв. интегральная кривая ур-ния (272) быстро удаляется от кривой $x=\varphi(t)$ (рис. 3, область выше кривой $x=\varphi(t)$).
+\end{itemize}
+
+\begin{center}
+	\begin{tikzpicture}[scale=0.9]
+		\draw[-stealth] (-0.5,0) -- (6,0) node[below] {$t$};
+		\draw[-stealth] (0,-0.5) -- (0,4) node[left] {$x$};
+		\node[below left] at (0,0) {$0$};
+		
+		\draw[thick, blue] (0,3.5) .. controls (2,3.5) and (3,1.5) .. (5,1.5) node[right] {$x=\varphi(t)$};
+		
+		\foreach \x in {0.5, 1.5, 2.5, 3.5, 4.5} {
+			\draw[-stealth, blue] (\x, 3) -- (\x, 3.6);
+			\draw[-stealth, blue] (\x, 0.5) -- (\x, 1.1);
+		}
+		
+		\node at (1.5, 3.8) {$f(t,x) > 0$};
+		\node at (4, 0.5) {$f(t,x) > 0$};
+		
+		\filldraw (1,0.5) circle (1.5pt);
+		\draw[blue, thick, decoration={markings, mark=at position 0.6 with {\arrow{stealth}}}, postaction={decorate}] (1,0.5) .. controls (1.5, 2) and (2.5, 2) .. (3, 4);
+		
+		\node[right, align=left, text width=8cm] at (5.5, 2.5) {Если $\varphi'(t) < 0$, то интегральные кривые $x=x(t)$, приближ. на рис. 4 снизу к графику ф-ии $x=\varphi(t)$, пересекут его (т.к. в точках кривой $x=\varphi(t)$ траектория $x=x(t)$ горизонтальна, а значит пересечет идущую вниз кривую $x=\varphi(t)$). После пересечения кривой $x=\varphi(t)$ интегральные кривые пойдут наверх и быстро удалятся от кривой, т.к. будут находиться в области отталкивания.};
+		
+		\node[below] at (2.5, -0.5) {Рисунок 4 --- Полуустойчивый случай};
+	\end{tikzpicture}
+\end{center}
+
+Если $\varphi'(t) > 0$ при $t_0 \le t < t_1$ и $\varphi'(t) < 0$ при $t > t_1$, то при достаточно малом $\varepsilon$ интегральные кривые, выходящие из точки $(t_0, x_0)$, принадлежащей области притяжен. корня $x=\varphi(t)$, остаются вблизи кривой $x=\varphi(t)$ при $t_0 - \delta < t < t_1$, $\delta > 0$; в окрестности точки $t=t_1$ они пересекают кривую $x=\varphi(t)$, а затем удаляются от нее.
+
+Если в окрестности полуустойчивого решения $x=\varphi(t)$ ф-ия $f(t,x) \le 0$, то для справедливости высказанных утверждений знаки у производной $\varphi'(t)$ надо заменить противоположными.

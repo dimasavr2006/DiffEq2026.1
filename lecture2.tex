@@ -362,3 +362,376 @@
 Область $\Delta < 0$ пл-ти $bO\Delta$ --- точки типа седла.
 
 $\mathcal{D} = b^2 - 4\Delta > 0 \implies$ корни вещественные по т. Виета.
+
+Рассмотрим систему линейных однородных дифференциальных уравнений с постоянными коэффициентами:
+\begin{equation} \label{eq:231}
+	\dv{x_i}{t} = \sum_{j=1}^{n} a_{ij} x_j, \quad i=1,2,\dots,n \quad (n \ge 2) \quad (231)
+\end{equation}
+
+Для нее имеют место аналогичные типы расположения интегральных кривых около начала координат (обобщенное седло, обобщенный узел).
+
+\vspace{0.5cm}
+\begin{center}
+	\begin{tikzpicture}[scale=0.9, decoration={markings, mark=at position 1 with {\arrow{stealth}}}]
+		% n=1
+		\begin{scope}[xshift=-4cm, yshift=2cm]
+			\node[left] at (-1.5, 1.5) {$n=1$};
+			\draw[-stealth, thick] (-1, 0) -- (3, 0) node[right] {$\mathbb{R}$};
+			\filldraw (0.5, 0) circle (1.5pt) node[below] {$0$};
+		\end{scope}
+		
+		% n=3
+		\begin{scope}[xshift=2cm, yshift=2cm]
+			\node[left] at (-1.5, 1.5) {$n=3$};
+			\draw[-stealth, thick] (0, 0) -- (0, 2) node[right] {$x_3$};
+			\draw[-stealth, thick] (0, 0) -- (2, 0) node[right] {$x_2$};
+			\draw[-stealth, thick] (0, 0) -- (-1.5, -1.5) node[below] {$x_1$};
+		\end{scope}
+		
+		% n=4
+		\begin{scope}[xshift=8cm, yshift=2cm]
+			\node[left] at (-1.5, 1.5) {$n=4$};
+			\node[above, align=center] at (1, 2) {пр-во Минковского};
+			\draw[-stealth, thick] (0, -1) -- (0, 1.5) node[right] {$t$};
+			\draw[-stealth, thick] (0, -1) -- (2.5, -1) node[below] {$x_1, x_2, x_3$};
+			\node[below left] at (0, -1) {$0$};
+		\end{scope}
+		
+		% n=2
+		\begin{scope}[xshift=-4cm, yshift=-2.5cm]
+			\node[left] at (-1.5, 1.5) {$n=2$};
+			\draw[-stealth, thick] (0, -0.5) -- (0, 2) node[left] {$y$};
+			\draw[-stealth, thick] (-0.5, 0) -- (2.5, 0) node[right] {$x$};
+			\node[below left] at (0, 0) {$0$};
+			\node at (1.5, 1) {$\mathbb{R}^2$};
+		\end{scope}
+	\end{tikzpicture}
+\end{center}
+\vspace{0.5cm}
+
+\begin{theorem}{Об устойчивости точки покоя системы линейных ДУ}{linear_stability}
+	Если все корни характеристического уравнения для $n$-мерной системы имеют отрицательную вещественную часть, то точка покоя системы \eqref{eq:231} $x_i = 0$, $i=1,2,\dots,n$, асимптотически устойчива. Если хотя бы один корень характеристического уравнения имеет положительную вещественную часть, то точка покоя неустойчива.
+\end{theorem}
+
+\begin{example}
+	Проверим устойчивость точки покоя $(0,0,0)$ системы:
+	\begin{equation*}
+		\begin{cases}
+			\dv{x}{t} = -x + z \\
+			\dv{y}{t} = -2y - z \\
+			\dv{z}{t} = y - z
+		\end{cases}
+	\end{equation*}
+	Составляем характеристическое уравнение:
+	\begin{equation*}
+		\begin{vmatrix} 
+			-1-\lambda & 0 & 1 \\ 
+			0 & -2-\lambda & -1 \\ 
+			0 & 1 & -1-\lambda 
+		\end{vmatrix} = 0
+	\end{equation*}
+	\begin{equation*}
+		\Updownarrow
+	\end{equation*}
+	\begin{equation*}
+		-(1+\lambda)(2+\lambda+2\lambda+\lambda^2+1) = 0
+	\end{equation*}
+	\begin{equation*}
+		\Updownarrow
+	\end{equation*}
+	\begin{equation*}
+		(1+\lambda)(\lambda^2+3\lambda+3) = 0
+	\end{equation*}
+	\begin{equation*}
+		\lambda_1 = -1, \quad \lambda_{2,3} = \frac{-3 \pm \sqrt{-3}}{2} = -\frac{3}{2} \pm i\frac{\sqrt{3}}{2} \implies \text{все корни имеют отрицательные вещественные части}
+	\end{equation*}
+	\begin{equation*}
+		\Downarrow
+	\end{equation*}
+	\begin{center}
+		точка покоя $(0,0,0)$ --- асимптотически устойчива
+	\end{center}
+\end{example}
+
+\section{Метод функций Ляпунова}
+
+Метод функций Ляпунова состоит в непосредственном исследовании устойчивости положения равновесия системы $\dv{x_i}{t} = f_i(x_1, x_2, \dots, x_n)$, $i=1,2,\dots,n$ при помощи подходящим образом подобранной функции $V(t, x_1, x_2, \dots, x_n)$ --- функции Ляпунова, причем это делается без предварительного нахождения решений системы.
+
+\begin{itemize}
+	\item \textbf{Автономные системы:}
+\end{itemize}
+\begin{equation} \label{eq:232}
+	\dv{x_i}{t} = f_i(x_1, x_2, \dots, x_n), \quad i=1,2,\dots,n \quad (232)
+\end{equation}
+для которых $x_i \equiv 0$, $i=1,2,\dots,n$ есть точка покоя.
+
+\begin{definition}{Знакоопределенная функция}{def_positive_definite}
+	Функция $V(x_1, x_2, \dots, x_n)$, определенная в некоторой окрестности начала координат, называется \textbf{знакоопределенной} (определенно-положительной / определенно-отрицательной), если она в области 
+	\begin{equation} \label{eq:233}
+		|x_i| \le h, \quad i=1,2,\dots,n \quad (233)
+	\end{equation}
+	где $h$ --- достаточно малое положительное число, может принимать значения только одного определенного знака и обращается в $0$ лишь при $x_1 = x_2 = \dots = x_n = 0$.
+\end{definition}
+
+Например, функции $V = x_1^2 + x_2^2 + x_3^2$ и $V = x_1^2 + 2x_1x_2 + 2x_2^2 + x_3^2$ будут определенно-положительными, причем величина $h > 0$ может быть взята сколь угодно большой.
+
+\begin{definition}{Знакопостоянная функция}{def_positive_semidefinite}
+	Функция $V(x_1, x_2, \dots, x_n)$ называют \textbf{знакопостоянной} (положительной / отрицательной), если она в области $|x_i| \le h$, $i=1,2,\dots,n$ может принимать значения только одного определенного знака, но может обращаться в $0$ и при $x_1^2 + x_2^2 + \dots + x_n^2 \neq 0$.
+\end{definition}
+
+Например, функция $V = x_1^2 + x_2^2 + 2x_1x_2 + x_3^2 = (x_1+x_2)^2 + x_3^2$ будет знакопостоянной (положительной), но не будет знакоопределенной, так как она обращается в $0$ и при $x_1^2 + x_2^2 + x_3^2 \neq 0$, а именно:
+$\begin{cases} x_3 = 0 \\ x_1 = -x_2 \end{cases}$.
+
+\begin{definition}{Полная производная функции по времени}{def_total_derivative}
+	Пусть $V(x_1, x_2, \dots, x_n)$ есть дифференцируемая функция своих аргументов. Пусть $x_1, x_2, \dots, x_n$ --- являются некоторыми функциями времени, удовлетворяющими системе дифференциальных уравнений \eqref{eq:232}. Тогда
+	\begin{equation} \label{eq:234}
+		\dv{V}{t} = \sum_{i=1}^{n} \pdv{V}{x_i} \cdot \dv{x_i}{t} = \sum_{i=1}^{n} \pdv{V}{x_i} \cdot f_i(x_1, \dots, x_n) \quad (234)
+	\end{equation}
+	Величина $\dv{V}{t}$, определяемая формулой \eqref{eq:234}, называется \textbf{полной производной функции $V$ по времени}, составленной в силу системы уравнений \eqref{eq:232}.
+\end{definition}
+
+\begin{theorem}{Теорема Ляпунова об устойчивости}{lyap_stability}
+	Если для системы дифференциальных уравнений \eqref{eq:232} существует знакоопределенная функция $V(x_1, x_2, \dots, x_n)$ (функция Ляпунова), полная производная $\dv{V}{t}$ которой по времени, составленная в силу системы \eqref{eq:232}, есть функция знакопостоянная, знака, противоположного с $V$, или тождественно равная $0$, то точка покоя $x_i = 0$, $i=1,2,\dots,n$, системы \eqref{eq:232} устойчива.
+\end{theorem}
+
+\begin{theorem}{Теорема Ляпунова об асимптотической устойчивости}{lyap_asymp_stability}
+	Если для системы дифференциальных уравнений \eqref{eq:232} существует знакоопределенная функция $V(x_1, x_2, \dots, x_n)$ (функция Ляпунова), полная производная $\dv{V}{t}$ которой по времени, составленная в силу системы \eqref{eq:232}, есть функция знакоопределенная знака, противоположного с $V$, то точка покоя $x_i = 0$, $i=1,2,\dots,n$, системы \eqref{eq:232} асимптотически устойчива.
+\end{theorem}
+
+\begin{example}
+	Исследовать на устойчивость точку покоя системы:
+	\begin{equation} \label{eq:235}
+		\begin{cases}
+			\dv{x}{t} = y \\
+			\dv{y}{t} = -x
+		\end{cases} \quad (235)
+	\end{equation}
+	Выберем в качестве функции $V(x,y)$ функцию $V = x^2 + y^2$.
+	Эта функция определенно-положительная.
+	Производная функции $V$ в силу системы \eqref{eq:235} равна:
+	\begin{equation*}
+		\dv{V}{t} = \underbrace{\pdv{V}{x}}_{2x} \cdot \underbrace{\dv{x}{t}}_{y} + \underbrace{\pdv{V}{y}}_{2y} \cdot \underbrace{\dv{y}{t}}_{-x} = 2xy - 2xy \equiv 0.
+	\end{equation*}
+	Однако асимптотической устойчивости нет: траектории системы \eqref{eq:235} --- окружности, и они не стремятся к точке $(0,0)$ при $t \to +\infty$.
+	$\Downarrow$
+	по Теореме Ляпунова об устойчивости, точка покоя $(0,0)$ системы \eqref{eq:235} устойчива.
+\end{example}
+
+\begin{example}
+	Исследовать на устойчивость точку покоя системы:
+	\begin{equation} \label{eq:236}
+		\begin{cases}
+			\dv{x}{t} = y - x^3 \\
+			\dv{y}{t} = -x - 3y^3
+		\end{cases} \quad (236)
+	\end{equation}
+	Возьмем $V = x^2 + y^2$, тогда:
+	\begin{equation*}
+		\dv{V}{t} = \underbrace{2x}_{\pdv{V}{x}} \underbrace{(y - x^3)}_{\dv{x}{t}} + \underbrace{2y}_{\pdv{V}{y}} \underbrace{(-x - 3y^3)}_{\dv{y}{t}} = -2(x^4 + 3y^4) < 0 \implies \text{определенно-отрицательная функция}
+	\end{equation*}
+	$\Downarrow$
+	по Теореме Ляпунова об асимптотической устойчивости, точка покоя $(0,0)$ системы \eqref{eq:236} устойчива асимптотически.
+\end{example}
+
+\begin{nb}
+	Общего метода построения функции Ляпунова \textbf{НЕТ}. В простейших случаях функцию Ляпунова можно искать в виде: $V(x,y) = ax^2 + by^2$, $V(x,y) = ax^4 + bx^4$, $V(x,y) = ax^4 + by^4$ ($a>0, b>0$) и так далее.
+\end{nb}
+
+\begin{example}
+	С помощью функции Ляпунова исследовать на устойчивость тривиальное решение $x=0, y=0$ системы:
+	\begin{equation*}
+		\begin{cases}
+			\dv{x}{t} = -x - 2y + x^2y^2 \\
+			\dv{y}{t} = x - \frac{y}{2} - \frac{x^3y}{2}
+		\end{cases}
+	\end{equation*}
+	Будем искать функцию Ляпунова в виде: $V = ax^2 + by^2$, где $a>0, b>0$.
+	\begin{align*}
+		\dv{V}{t} = \pdv{V}{x}\dv{x}{t} + \pdv{V}{y}\dv{y}{t} &= 2ax(-x - 2y + x^2y^2) + 2by\qty(x - \frac{y}{2} - \frac{x^3y}{2}) \\
+		&= -(2ax^2 + by^2) + (2xy - x^3y^2)(b - 2a).
+	\end{align*}
+	Положим $b = 2a$, тогда
+	\begin{equation*}
+		\dv{V}{t} = -2a(x^2 + y^2) \le 0 \implies \text{при любом } a>0 \text{ и } b=2a \text{ функция } V = ax^2 + 2ay^2 \text{ будет опред.-положительной},
+	\end{equation*}
+	а $\dv{V}{t}$ --- определенно-отрицательной.
+	$\implies x=0, y=0$ устойчиво асимптотически.
+\end{example}
+
+\begin{theorem}{Теорема Ляпунова о неустойчивости}{lyap_instability}
+	Пусть для системы дифференциальных уравнений \eqref{eq:232} существует дифференцируемая в окрестности начала координат функция $V(x_1, x_2, \dots, x_n)$ такая, что $V(0,0,\dots,0) = 0$. Если ее полная производная $\dv{V}{t}$, составленная в силу системы \eqref{eq:232}, есть определенно-положительная функция и сколь угодно близко от начала координат имеются точки, в которых функция $V(x_1, x_2, \dots, x_n) > 0$, то точка покоя $x_i = 0$ неустойчива.
+\end{theorem}
+
+\section{Устойчивость по первому приближению}
+
+\begin{itemize}
+	\item Рассмотрим систему дифференциальных уравнений:
+\end{itemize}
+\begin{equation} \label{eq:237}
+	\dv{x_i}{t} = f_i(x_1, x_2, \dots, x_n), \quad i=1,2,\dots,n \quad (237)
+\end{equation}
+Пусть $x_i \equiv 0$, $i=1,2,\dots,n$ есть точка покоя системы \eqref{eq:237}, то есть $f_i(0, 0, \dots, 0) = 0$, $i=1,2,\dots,n$.
+Предположим, что $f_i(x)$ дифференцируемы в начале координат достаточное число раз.
+
+Разложим функции $f_i$ по формуле Тейлора по $x$ в окрестности начала координат:
+\begin{equation*}
+	f_i(x_1, x_2, \dots, x_n) = \sum_{j=1}^{n} a_{ij} x_j + R_i(x_1, x_2, \dots, x_n), \quad \text{где } a_{ij} = \pdv{f_i}{x_j}(0, 0, \dots, 0),
+\end{equation*}
+а $R_i$ --- члены второго порядка малости относительно начала координат.
+
+Тогда система \eqref{eq:237} запишется в следующем виде:
+\begin{equation} \label{eq:238}
+	\dv{x_i}{t} = \sum_{j=1}^{n} a_{ij} x_j + R_i(x_1, x_2, \dots, x_n), \quad i=1,2,\dots,n \quad (238)
+\end{equation}
+
+Вместо системы \eqref{eq:238} рассмотрим систему:
+\begin{equation} \label{eq:239}
+	\dv{x_i}{t} = \sum_{j=1}^{n} a_{ij} x_j, \quad i=1,2,\dots,n, \quad a_{ij} = \text{const} \quad (239)
+\end{equation}
+называемую \textbf{системой уравнений первого приближения} для системы \eqref{eq:237}.
+
+\begin{theorem}{Утверждение}{stability_first_approx}
+	1) Если все корни характеристического уравнения
+	\begin{equation} \label{eq:240}
+		\begin{vmatrix}
+			a_{11} - \lambda & a_{12} & \dots & a_{1n} \\
+			a_{21} & a_{22} - \lambda & \dots & a_{2n} \\
+			\dots & \dots & \dots & \dots \\
+			a_{n1} & a_{n2} & \dots & a_{nn} - \lambda
+		\end{vmatrix} = 0 \quad (240)
+	\end{equation}
+	имеют отрицательные вещественные части, то нулевое решение $x_i = 0$, $i=1,2,\dots,n$ системы \eqref{eq:239} и системы \eqref{eq:238} асимптотически устойчиво.
+	
+	2) Если все корни характеристического уравнения \eqref{eq:240} имеют положительную вещественную часть, то нулевое решение системы \eqref{eq:239} и системы \eqref{eq:238} неустойчиво.
+\end{theorem}
+
+Говорят, что в случаях 1 и 2 возможно исследование решения на устойчивость по первому приближению. Случаи, когда вещественные части всех корней характеристического уравнения \eqref{eq:240} неположительны (то есть отрицательные или нулевые), являются критическими.
+Если вещественная часть хотя бы одного корня равна $0$, то исследование решения на устойчивость по первому приближению, вообще говоря, невозможно (так как начинают влиять нелинейные члены $R_i$).
+
+\begin{example}
+	Исследовать на устойчивость по первому приближению точку покоя $(0,0)$ системы:
+	\begin{equation} \label{eq:241}
+		\begin{cases}
+			\dot{x} = 2x + y - 5y^2 \\
+			\dot{y} = 3x + y + \frac{x^3}{2}
+		\end{cases} \quad (241)
+	\end{equation}
+	Система первого приближения:
+	\begin{equation} \label{eq:242}
+		\begin{cases}
+			\dot{x} = 2x + y \\
+			\dot{y} = 3x + y
+		\end{cases} \quad (242)
+	\end{equation}
+	Составим характеристическое уравнение:
+	\begin{equation} \label{eq:243}
+		\det \begin{pmatrix} 2-\lambda & 1 \\ 3 & 1-\lambda \end{pmatrix} = 0 \iff (2-\lambda)(1-\lambda) - 3 = 0 \iff \lambda^2 - 3\lambda - 1 = 0 \quad (243)
+	\end{equation}
+	\begin{equation*}
+		D = 9 + 4 = 13 \implies \lambda_{1,2} = \frac{3 \pm \sqrt{13}}{2} \text{ --- вещественные корни}
+	\end{equation*}
+	$\lambda_1 > 0 \implies$ нулевое решение системы \eqref{eq:241} неустойчиво (по п. 2 утверждения).
+\end{example}
+
+\begin{example}
+	Исследовать на устойчивость по первому приближению точку покоя $x=0, y=0$ систем:
+	\begin{equation} \label{eq:244}
+		\begin{cases}
+			\dv{x}{t} = y - x^3 \\
+			\dv{y}{t} = -x - y^3
+		\end{cases} \quad (244)
+	\end{equation}
+	и
+	\begin{equation} \label{eq:245}
+		\begin{cases}
+			\dv{x}{t} = y + x^3 \\
+			\dv{y}{t} = -x + y^3
+		\end{cases} \quad (245)
+	\end{equation}
+	Проверим устойчивость решения методом Ляпунова. Для системы \eqref{eq:244} возьмем функцию Ляпунова: $V = x^2 + y^2$.
+	\begin{equation*}
+		\dv{V}{t} = \underbrace{\pdv{V}{x}}_{2x} \underbrace{\dv{x}{t}}_{y-x^3} + \underbrace{\pdv{V}{y}}_{2y} \underbrace{\dv{y}{t}}_{-x-y^3} = 2x(y-x^3) + 2y(-x-y^3) = -2(x^4+y^4) \le 0
+	\end{equation*}
+	$\implies$ по Теореме Ляпунова точка покоя $x=0, y=0$ системы \eqref{eq:244} асимптотически устойчива.
+	
+	Для системы \eqref{eq:245} возьмем $V = x^2 + y^2$:
+	\begin{equation*}
+		\dv{V}{t} = 2x(y+x^3) + 2y(-x+y^3) = 2(x^4+y^4) > 0
+	\end{equation*}
+	$\implies$ по Теореме Ляпунова точка покоя $x=0, y=0$ системы \eqref{eq:245} неустойчива.
+	
+	Системы \eqref{eq:244} и \eqref{eq:245} имеют одну и ту же систему первого приближения:
+	\begin{equation} \label{eq:246}
+		\begin{cases}
+			\dv{x}{t} = y \\
+			\dv{y}{t} = -x
+		\end{cases} \quad (246)
+	\end{equation}
+	Характеристическое уравнение: $\begin{vmatrix} -\lambda & 1 \\ -1 & -\lambda \end{vmatrix} = 0 \iff \lambda^2 + 1 = 0 \iff \lambda^2 = -1 \iff \lambda = \pm i$ --- чисто мнимые корни, то есть вещественные части корней характеристического уравнения равны $0$.
+	
+	Для системы первого приближения \eqref{eq:246} начало координат является центром. Системы \eqref{eq:244} и \eqref{eq:245} получаются малым возмущением правых частей системы \eqref{eq:246} в окрестности начала координат.
+	Однако эти малые возмущения приводят к тому, что замкнутые траектории превращаются в спирали, в случае \eqref{eq:244} приближающиеся к началу координат и образующие в точке $(0,0)$ устойчивый фокус, а в случае \eqref{eq:245} --- удаляющиеся от начала координат и образующие в точке $(0,0)$ неустойчивый фокус.
+	
+	\textbf{Вывод:} В критическом случае нелинейные члены могут влиять на устойчивость точки покоя.
+\end{example}
+
+\begin{example}
+	Замкнутый контур с нелинейными элементами.
+	
+	\begin{center}
+		\begin{circuitikz}[european, scale=1.2]
+			\draw (0,0) -- (0,2) 
+			to[L, l=$L$, i=$i \! = \! \dv{x}{t}$] (3,2) 
+			to[R=$R$] (6,2) 
+			to[C=$C$] (6,0) 
+			-- (0,0);
+		\end{circuitikz}
+	\end{center}
+	
+	Уравнение контура:
+	\begin{equation} \label{eq:247}
+		L \dv[2]{x}{t} + R \dv{x}{t} + \frac{1}{C} x + g\qty(x, \dv{x}{t}) = 0 \quad (247)
+	\end{equation}
+	Здесь $x$ --- заряд конденсатора $\implies \dv{x}{t}$ --- ток в цепи, $R$ --- сопротивление, $L$ --- индуктивность, $C$ --- ёмкость. $g\qty(x, \dv{x}{t})$ --- нелинейные члены, имеющие степень не ниже второй, $g(0,0) = 0$.
+	
+	Перепишем \eqref{eq:247} в виде:
+	\begin{equation} \label{eq:248}
+		\begin{cases}
+			\dv{x}{t} = y \\
+			\dv{y}{t} = -\frac{1}{LC} x - \frac{R}{L} y - \frac{1}{L} g(x,y)
+		\end{cases} \quad (248)
+	\end{equation}
+	
+	Запишем систему первого приближения:
+	\begin{equation} \label{eq:249}
+		\begin{cases}
+			\dv{x}{t} = y \\
+			\dv{y}{t} = -\frac{1}{LC} x - \frac{R}{L} y
+		\end{cases} \quad (249)
+	\end{equation}
+	Характеристическое уравнение для \eqref{eq:249}:
+	\begin{equation} \label{eq:250}
+		\det \begin{pmatrix} -\lambda & 1 \\ -\frac{1}{LC} & -\frac{R}{L}-\lambda \end{pmatrix} = 0 \iff \lambda^2 + \frac{R}{L}\lambda + \frac{1}{LC} = 0 \iff \lambda = \frac{-\frac{R}{L} \pm \sqrt{\frac{R^2}{L^2} - \frac{4}{LC}}}{2} \quad (250)
+	\end{equation}
+	$\iff \lambda = -\frac{R}{2L} \pm \sqrt{\frac{R^2}{4L^2} - \frac{1}{LC}}$. 
+	Если $D < 0$, то есть $\frac{R^2}{4L^2} < \frac{1}{LC} \iff R^2 < \frac{4L}{C}$, то уравнение \eqref{eq:250} имеет комплексные корни с отрицательной вещественной частью $\qty(-\frac{R}{2L}) \implies$ точка $(0,0)$ системы \eqref{eq:249} и \eqref{eq:248} асимптотически устойчива. Если $D > 0$, то есть $R^2 > \frac{4L}{C}$, то точка $(0,0)$ асимптотически устойчива, так как $\lambda < 0$.
+\end{example}
+
+\section{Устойчивость решений дифференциальных уравнений по отношению к изменению правых частей уравнения}
+
+\begin{itemize}
+	\item Дифференциальные уравнения:
+\end{itemize}
+\begin{align}
+	y' &= f(x,y) \quad (251) \label{eq:251} \\
+	y' &= f(x,y) + \theta(x,y) \quad (252) \label{eq:252}
+\end{align}
+где функции $f(x,y)$ и $\theta(x,y)$ непрерывны в замкнутой области $\overline{G}$ плоскости $xOy$ и функция $f(x,y)$ имеет в этой области непрерывную частную производную $\pdv{f}{y}$.
+
+\begin{theorem}{Об оценке разности решений при малом изменении правой части уравнения}{diff_estimation}
+	Пусть в области $\overline{G}$ выполняется неравенство $|\theta(x,y)| \le \varepsilon$.
+	Если $y = \varphi(x)$ и $y = \psi(x)$ есть решения уравнений \eqref{eq:251} и \eqref{eq:252} соответственно, удовлетворяющие одному и тому же начальному условию $\left. \varphi \right|_{x=x_0} = \left. \psi \right|_{x=x_0} = y_0$, то:
+	\begin{equation} \label{eq:253}
+		|\varphi(x) - \psi(x)| \le \frac{\varepsilon}{M} \qty( \exp(M |x - x_0|) - 1 ), \quad \text{где } M = \max_{(x,y) \in \overline{G}} \abs{\pdv{f}{y}} \quad (253)
+	\end{equation}
+\end{theorem}
