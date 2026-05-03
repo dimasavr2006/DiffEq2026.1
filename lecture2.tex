@@ -1,6 +1,6 @@
 \noindent \textbf{16.02}
 
-\section*{\S~6.3 \quad Простейшие типы точек покоя}
+\section{Простейшие типы точек покоя}
 
 \begin{itemize}
 	\item Для анализа поведения решений линейных систем оказывается удобным выделить в картине интегральных кривых характерные элементы. Такими элементами оказываются окрестности точек покоя.
@@ -36,9 +36,7 @@
 	\item[(в)] $\lambda_1 > 0, \lambda_2 < 0$. Точка покоя неустойчива (седло). \textcolor{orange}{рис. 3}
 \end{itemize}
 
-\begin{itemize}
-	\item \colorbox{green!30}{Траектории решений системы $(x(t), y(t))$ при изменении $t$ для различных} \colorbox{green!30}{типов точек покоя, на плоскости $xOy$:}
-\end{itemize}
+\noindent\colorbox{green!30}{\parbox{\dimexpr\textwidth-2\fboxsep}{Траектории решений системы $(x(t), y(t))$ при изменении $t$ для различных типов точек покоя, на плоскости $xOy$:}}
 
 \vspace{0.5cm}
 \noindent
@@ -59,7 +57,7 @@
 		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
-	\small Рис. 1. Устойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 < 0, \lambda_2 < 0$. Асимптотически устойчива
+	\footnotesize Рис. 1. Устойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 < 0, \lambda_2 < 0$. Асимптотически устойчива
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 	\centering
@@ -78,7 +76,7 @@
 		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
 	\end{tikzpicture}
 	
-	\small Рис. 2. Неустойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 > 0, \lambda_2 > 0$
+	\footnotesize Рис. 2. Неустойчивый узел. $\lambda_1, \lambda_2 \in \mathbb{R}$, $\lambda_1 \neq \lambda_2$, $\lambda_1 > 0, \lambda_2 > 0$
 \end{minipage}
 
 \vspace{0.5cm}
@@ -100,7 +98,7 @@
 			\draw[postaction={decorate}] (0,0) -- (-2.8,0);
 		\end{tikzpicture}
 		
-		\small Рис. 3. Седло. $\lambda_1, \lambda_2 \in \mathbb{R}, \lambda_1 \neq \lambda_2, \lambda_1 > 0, \lambda_2 < 0$. Неустойчива
+		\footnotesize Рис. 3. Седло. $\lambda_1, \lambda_2 \in \mathbb{R}, \lambda_1 \neq \lambda_2, \lambda_1 > 0, \lambda_2 < 0$. Неустойчива
 	\end{minipage}
 \end{center}
 
@@ -122,7 +120,7 @@
 		\draw[postaction={decorate}, domain=0:5*pi, samples=200, variable=\t] plot ({2.5*exp(-0.1*\t)*cos(-\t r)}, {2.5*exp(-0.1*\t)*sin(-\t r)});
 	\end{tikzpicture}
 	
-	\small Рис. 4. Устойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}$, $\lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha < 0, \beta \neq 0$. Асимптотически устойчива
+	\footnotesize Рис. 4. Устойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}$, $\lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha < 0, \beta \neq 0$. Асимптотически устойчива
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 	\centering
@@ -132,7 +130,7 @@
 		\draw[postaction={decorate}, domain=0:5*pi, samples=200, variable=\t] plot ({0.5*exp(0.1*\t)*cos(-\t r)}, {0.5*exp(0.1*\t)*sin(-\t r)});
 	\end{tikzpicture}
 	
-	\small Рис. 5. Неустойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}, \lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha > 0, \beta \neq 0$.
+	\footnotesize Рис. 5. Неустойчивый фокус. $\lambda_1, \lambda_2 \in \mathbb{C}, \lambda_1 = \alpha + i\beta, \lambda_2 = \alpha - i\beta$, $\alpha > 0, \beta \neq 0$.
 \end{minipage}
 
 \vspace{0.5cm}
@@ -147,7 +145,7 @@
 			}
 		\end{tikzpicture}
 		
-		\small Рис. 6. Центр. $\lambda_1, \lambda_2 \in \mathbb{C}, \lambda_1 = i\beta, \lambda_2 = -i\beta, \beta \neq 0$. Устойчива.
+		\footnotesize Рис. 6. Центр. $\lambda_1, \lambda_2 \in \mathbb{C}, \lambda_1 = i\beta, \lambda_2 = -i\beta, \beta \neq 0$. Устойчива.
 	\end{minipage}
 \end{center}
 
@@ -175,7 +173,7 @@
 		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
-	\small Асимптотически устойчива. \\ Рис. 7. Точка покоя --- вырожденный устойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$.
+	\footnotesize Асимптотически устойчива. \\ Рис. 7. Точка покоя --- вырожденный устойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$.
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 	\centering
@@ -191,7 +189,7 @@
 		\draw[postaction={decorate}] (-2.5,0) -- (0,0);
 	\end{tikzpicture}
 	
-	\small Рис. 8. Устойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$. Асимптотически устойчива.
+	\footnotesize Рис. 8. Устойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda < 0$. Асимптотически устойчива.
 \end{minipage}
 
 \vspace{0.5cm}
@@ -211,7 +209,7 @@
 		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
 	\end{tikzpicture}
 	
-	\small Рис. 9. Неустойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda > 0$.
+	\footnotesize Рис. 9. Неустойчивый узел. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda > 0$.
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 	\centering
@@ -227,7 +225,7 @@
 		\draw[postaction={decorate}] (0,0) -- (-2.5,0);
 	\end{tikzpicture}
 	
-	\small Рис. 10. Неустойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda > 0$.
+	\footnotesize Рис. 10. Неустойчивый узел, вырожденный случай. $\lambda_1 = \lambda_2 = \lambda \in \mathbb{R}, \lambda > 0$.
 \end{minipage}
 
 \vspace{0.5cm}
@@ -267,15 +265,13 @@
 \hspace*{2.5cm} $\Delta = a_{11} \cdot a_{22} - a_{12} \cdot a_{21}$
 
 Характеристич. ур-ние: 
-\begin{equation*}
-	\begin{vmatrix} a_{11} - \lambda & a_{12} \\ a_{21} & a_{22} - \lambda \end{vmatrix} = 0 
-	\iff (a_{11} - \lambda)(a_{22} - \lambda) - a_{12}a_{21} = 0 
-	\iff a_{11}a_{22} - a_{11}\lambda - a_{22}\lambda + \lambda^2 - a_{12}a_{21} = 0
-\end{equation*}
-\begin{equation*}
-	\iff \lambda^2 - (a_{11} + a_{22})\lambda + a_{11}a_{22} - a_{12}a_{21} = 0 
+\begin{align*}
+	\begin{vmatrix} a_{11} - \lambda & a_{12} \\ a_{21} & a_{22} - \lambda \end{vmatrix} &= 0 \\
+	\iff (a_{11} - \lambda)(a_{22} - \lambda) - a_{12}a_{21} &= 0 \\
+	\iff a_{11}a_{22} - a_{11}\lambda - a_{22}\lambda + \lambda^2 - a_{12}a_{21} &= 0 \\
+	\iff \lambda^2 - (a_{11} + a_{22})\lambda + a_{11}a_{22} - a_{12}a_{21} &= 0 \\
 	\iff \text{\colorbox{yellow!30}{$\lambda^2 + b\lambda + \Delta = 0$}}
-\end{equation*}
+\end{align*}
 
 Рассмотрим плоскость с прямоугольными декартовыми координатами $\Delta$ и $b$ и отметим на ней области, соответствующие различным типам точек покоя.
 
@@ -284,25 +280,21 @@
 \vspace{0.5cm}
 \noindent
 \begin{minipage}{0.48\textwidth}
-	\begin{equation*}
-		\left[
-		\begin{array}{l}
-			\text{По т. Виета, } \Delta = \lambda_1 \lambda_2 > 0 \implies \text{корни одного знака} \\
-			\lambda_1 + \lambda_2 = -b < 0 \implies \lambda_1 < 0, \lambda_2 < 0
-		\end{array}
-		\right]
-	\end{equation*}
+	\footnotesize
+	\centering
+	$\displaystyle[\begin{array}{l}
+		\text{По т. Виета, } \Delta = \lambda_1 \lambda_2 > 0 \implies \text{корни одного знака} \\
+		\lambda_1 + \lambda_2 = -b < 0 \implies \lambda_1 < 0, \lambda_2 < 0
+	\end{array}]$
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
-	\begin{equation*}
-		\left[
-		\begin{array}{l}
-			\lambda_1 = p+iq, \lambda_2 = p-iq, \quad p < 0 \\
-			\Delta = \lambda_1 \lambda_2 = (p+iq)(p-iq) = p^2 + q^2 > 0 \\
-			\lambda_1 + \lambda_2 = 2p = -b < 0 \implies b > 0
-		\end{array}
-		\right]
-	\end{equation*}
+	\footnotesize
+	\centering
+	$\displaystyle[\begin{array}{l}
+		\lambda_1 = p+iq, \lambda_2 = p-iq, \quad p < 0 \\
+		\Delta = \lambda_1 \lambda_2 = (p+iq)(p-iq) = p^2 + q^2 > 0 \\
+		\lambda_1 + \lambda_2 = 2p = -b < 0 \implies b > 0
+	\end{array}]$
 \end{minipage}
 
 \begin{center}
@@ -443,8 +435,11 @@ $\mathcal{D} = b^2 - 4\Delta > 0 \implies$ корни вещественные �
 		(1+\lambda)(\lambda^2+3\lambda+3) = 0
 	\end{equation*}
 	\begin{equation*}
-		\lambda_1 = -1, \quad \lambda_{2,3} = \frac{-3 \pm \sqrt{-3}}{2} = -\frac{3}{2} \pm i\frac{\sqrt{3}}{2} \implies \text{все корни имеют отрицательные вещественные части}
+		\lambda_1 = -1, \quad \lambda_{2,3} = \frac{-3 \pm \sqrt{-3}}{2} = -\frac{3}{2} \pm i\frac{\sqrt{3}}{2}
 	\end{equation*}
+	\begin{center}
+		все корни имеют отрицательные вещественные части
+	\end{center}
 	\begin{equation*}
 		\Downarrow
 	\end{equation*}
@@ -526,9 +521,10 @@ $\begin{cases} x_3 = 0 \\ x_1 = -x_2 \end{cases}$.
 		\end{cases} \quad (236)
 	\end{equation}
 	Возьмем $V = x^2 + y^2$, тогда:
-	\begin{equation*}
-		\dv{V}{t} = \underbrace{2x}_{\pdv{V}{x}} \underbrace{(y - x^3)}_{\dv{x}{t}} + \underbrace{2y}_{\pdv{V}{y}} \underbrace{(-x - 3y^3)}_{\dv{y}{t}} = -2(x^4 + 3y^4) < 0 \implies \text{определенно-отрицательная функция}
-	\end{equation*}
+	\begin{align*}
+		\dv{V}{t} &= \underbrace{2x}_{\pdv{V}{x}} \underbrace{(y - x^3)}_{\dv{x}{t}} + \underbrace{2y}_{\pdv{V}{y}} \underbrace{(-x - 3y^3)}_{\dv{y}{t}} \\
+		&= -2(x^4 + 3y^4) < 0 \implies \text{определенно-отриц. функция}
+	\end{align*}
 	$\Downarrow$
 	по Теореме Ляпунова об асимптотической устойчивости, точка покоя $(0,0)$ системы \eqref{eq:236} устойчива асимптотически.
 \end{example}
@@ -551,9 +547,11 @@ $\begin{cases} x_3 = 0 \\ x_1 = -x_2 \end{cases}$.
 		&= -(2ax^2 + by^2) + (2xy - x^3y^2)(b - 2a).
 	\end{align*}
 	Положим $b = 2a$, тогда
-	\begin{equation*}
-		\dv{V}{t} = -2a(x^2 + y^2) \le 0 \implies \text{при любом } a>0 \text{ и } b=2a \text{ функция } V = ax^2 + 2ay^2 \text{ будет опред.-положительной},
-	\end{equation*}
+	\begin{align*}
+		\dv{V}{t} &= -2a(x^2 + y^2) \le 0 \\
+		\implies &\text{при любом } a>0 \text{ и } b=2a \text{ функция } V = ax^2 + 2ay^2 \\
+		&\text{будет опред.-положительной},
+	\end{align*}
 	а $\dv{V}{t}$ --- определенно-отрицательной.
 	$\implies x=0, y=0$ устойчиво асимптотически.
 \end{example}
@@ -717,7 +715,7 @@ $\begin{cases} x_3 = 0 \\ x_1 = -x_2 \end{cases}$.
 	Если $D < 0$, то есть $\frac{R^2}{4L^2} < \frac{1}{LC} \iff R^2 < \frac{4L}{C}$, то уравнение \eqref{eq:250} имеет комплексные корни с отрицательной вещественной частью $\qty(-\frac{R}{2L}) \implies$ точка $(0,0)$ системы \eqref{eq:249} и \eqref{eq:248} асимптотически устойчива. Если $D > 0$, то есть $R^2 > \frac{4L}{C}$, то точка $(0,0)$ асимптотически устойчива, так как $\lambda < 0$.
 \end{example}
 
-\section{Устойчивость решений дифференциальных уравнений по отношению к изменению правых частей уравнения}
+\section{Устойчивость решений при изменении правых частей}
 
 \begin{itemize}
 	\item Дифференциальные уравнения:

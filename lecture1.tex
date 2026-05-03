@@ -1,5 +1,3 @@
-\section*{Дифференциальные уравнения. Часть 2.}
-\section*{Глава 6. Теория устойчивости}
 
 \section{Введение}
 
@@ -33,9 +31,7 @@
 
 \section{Устойчивость по Ляпунову. Основные понятия}
 
-\begin{itemize}
-	\item Рассмотрим систему $n$ дифференциальных уравнений относительно $n$ функций $x_1(t), x_2(t), \dots, x_n(t)$, записанную в нормальной форме Коши:
-\end{itemize}
+Рассмотрим систему $n$ дифференциальных уравнений для $n$ функций $x_1(t), \dots, x_n(t)$ в~нормальной форме~Коши:
 
 \begin{equation} \label{eq:197}
 	\begin{cases}
@@ -140,10 +136,16 @@ $\exists$ функции $f_i$ таковы, что выполнены усло�
 		\dv{x_i}{t} = f_i(x_1, x_2, \dots, x_n, t), \quad i=1,2,\dots,n \quad (203)
 	\end{equation}
 	Введем новые переменные $\tilde{x}_i = x_i - \varphi_i$. Тогда \eqref{eq:203} примет вид:
-	$$ \dv{\tilde{x}_i}{t} + \dv{\varphi_i}{t} = f_i(\tilde{x}_1 + \varphi_1, \dots, \tilde{x}_n + \varphi_n, t) \iff \dv{\tilde{x}_i}{t} = F_i(\tilde{x}_1, \dots, \tilde{x}_n, t), \quad i=1,2,\dots,n \quad (205) \label{eq:205} $$
+	\begin{align}
+		\dv{\tilde{x}_i}{t} + \dv{\varphi_i}{t} &= f_i(\tilde{x}_1 + \varphi_1, \dots, \tilde{x}_n + \varphi_n, t) \notag \\
+		\iff \dv{\tilde{x}_i}{t} &= F_i(\tilde{x}_1, \dots, \tilde{x}_n, t), \quad i=1,2,\dots,n \quad (205) \label{eq:205}
+	\end{align}
 	где $F_i(\tilde{x}_1, \dots, \tilde{x}_n, t) = f_i(\tilde{x}_1+\varphi_1, \dots, \tilde{x}_n+\varphi_n, t) - \dv{\varphi_i}{t}$. \quad ($\implies x_i = \tilde{x}_i + \varphi_i \quad (204)$).
 	
-	Заметим, что поскольку $\varphi_i$ является решением системы \eqref{eq:198}, то есть оно удовлетворяет системе ур-ний $\dv{\varphi_i}{t} = f_i(\varphi_1, \varphi_2, \dots, \varphi_n, t)$ (206), то $F_i(0, 0, \dots, 0, t) = f_i(\varphi_1, \varphi_2, \dots, \varphi_n, t) - \dv{\varphi_i}{t} = 0$ (207).
+	Заметим, что поскольку $\varphi_i$ является решением системы \eqref{eq:198}, то есть оно удовлетворяет системе ур-ний:
+	$$\dv{\varphi_i}{t} = f_i(\varphi_1, \varphi_2, \dots, \varphi_n, t) \quad (206)$$
+	то
+	$$F_i(0, 0, \dots, 0, t) = f_i(\varphi_1, \varphi_2, \dots, \varphi_n, t) - \dv{\varphi_i}{t} = 0 \quad (207).$$
 	
 	Таким образом, приходим к задаче об устойчивости нулевого решения системы \eqref{eq:205}.
 \end{proofbox}

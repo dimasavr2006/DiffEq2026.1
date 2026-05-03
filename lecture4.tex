@@ -1,3 +1,4 @@
+\section{Периодические решения и предельные циклы}
 \begin{definition}{Периодическое решение}{periodic_sol}
 	Решение $x=x(t)$, $y=y(t)$ автономной системы:
 	\begin{equation} \label{eq:284}
@@ -380,9 +381,10 @@ $\begin{cases} x = \frac{d}{c} + \tilde{x} \\ y = \frac{a}{b} + \tilde{y} \end{c
 	Перейдем в полярные координаты: $\begin{cases} x = r\cos\varphi \\ y = r\sin\varphi \end{cases} \implies x^2+y^2 = 1 \implies r=1, x^2+y^2=\frac{1}{25} \implies r=\frac{1}{5}$.
 	
 	Найдем $\dv{r}{t}$, для этого продифференцируем по $t$ равенство: $r^2 = x^2+y^2 \implies 2r\dv{r}{t} = 2x\dv{x}{t} + 2y\dv{y}{t} \implies \dv{r}{t} = \frac{1}{r}\qty(x\dv{x}{t} + y\dv{y}{t})$. Подставим $\dv{x}{t}, \dv{y}{t}$ из системы \eqref{eq:293}:
-	\begin{equation*}
-		\dv{r}{t} = \frac{1}{r}\qty( xy + y\qty(-x - y\ln(3x^2+4y^2+\frac{1}{2})) ) = -r\sin^2\varphi \cdot \ln(r^2(3\cos^2\varphi+4\sin^2\varphi)+\frac{1}{2})
-	\end{equation*}
+	\begin{align*}
+		\dv{r}{t} &= \frac{1}{r}\qty( xy + y\qty(-x - y\ln(3x^2+4y^2+\tfrac{1}{2})) ) \\
+		&= -r\sin^2\varphi \cdot \ln(r^2(3\cos^2\varphi+4\sin^2\varphi)+\tfrac{1}{2})
+	\end{align*}
 	На окружности $r=1$: $\dv{r}{t} = -\sin^2\varphi \ln(3\cos^2\varphi+4\sin^2\varphi+\frac{1}{2}) \le 0 \quad \forall \varphi$, т.е. векторное поле направлено к центру (к началу координат). Т.е. никакая траектория не может выйти из области $\Omega$ через внешнюю границу $r=1$.
 	
 	На окружности $r=1/5$: $\dv{r}{t} = -\frac{1}{5}\sin^2\varphi \cdot \ln\qty(\frac{1}{25}(3\cos^2\varphi+4\sin^2\varphi)+\frac{1}{2}) \ge 0 \quad \forall \varphi$, т.е. векторное поле направлено от центра (от начала координат). Т.е. никакая траектория не может выйти из $\Omega$ ч/з внутр. границу $r=1/5 \implies$ траектория, наход. в $\Omega$ при $t=0$, останется в $\Omega$ при $t>0$.
@@ -392,7 +394,7 @@ $\begin{cases} x = \frac{d}{c} + \tilde{x} \\ y = \frac{a}{b} + \tilde{y} \end{c
 
 \vspace{0.3cm}
 \noindent\underline{\textbf{20.04}}
-\section{§ 7.2. Теория бифуркаций}
+\section{Теория бифуркаций}
 \begin{itemize}
 	\item Качественное поведение систем 2-го порядка определяется типом ее точек равновесия и периодическими орбитами + некоторые другие свойства устойчивости.
 	\item \underline{Вопрос:} Сохранит ли система свои характеристики при бесконечно малых возмущениях?
@@ -407,13 +409,17 @@ $\begin{cases} \dot{x}_1 = 0 \\ \dot{x}_2 = 0 \end{cases} \implies \begin{cases}
 Линеаризуем систему \eqref{eq:297} в окрестности $(\sqrt{\mu}, 0)$.
 Для этого ищем решение в виде: $\begin{cases} x_1 = \sqrt{\mu} + \tilde{x}_1 \\ x_2 = \tilde{x}_2 \end{cases}$
 Подставим его в \eqref{eq:297}:
-$\begin{cases} \dot{\tilde{x}}_1 = \mu - (\mu - 2\sqrt{\mu}\tilde{x}_1 - \tilde{x}_1^2) \\ \dot{\tilde{x}}_2 = -\tilde{x}_2 \end{cases}$
+$$\begin{cases} \dot{\tilde{x}}_1 = \mu - (\mu - 2\sqrt{\mu}\tilde{x}_1 - \tilde{x}_1^2) \\ \dot{\tilde{x}}_2 = -\tilde{x}_2 \end{cases}$$
 
-Пренебрегаем нелинейными членами $\tilde{x}_1^2$: $\begin{cases} \dot{\tilde{x}}_1 = -2\sqrt{\mu}\tilde{x}_1 \\ \dot{\tilde{x}}_2 = -\tilde{x}_2 \end{cases}$ \\
-Матрица Якоби линеаризованной системы в точке $(\sqrt{\mu}, 0)$: $J = \begin{pmatrix} \pdv{f_1}{x_1} & \pdv{f_1}{x_2} \\ \pdv{f_2}{x_1} & \pdv{f_2}{x_2} \end{pmatrix} = \begin{pmatrix} -2\sqrt{\mu} & 0 \\ 0 & -1 \end{pmatrix}$
+Пренебрегаем нелинейными членами $\tilde{x}_1^2$:
+$$\begin{cases} \dot{\tilde{x}}_1 = -2\sqrt{\mu}\tilde{x}_1 \\ \dot{\tilde{x}}_2 = -\tilde{x}_2 \end{cases}$$
 
-Найдем собственные значения $\lambda_1, \lambda_2$ как корни характеристического ур-ния: 
-$\det(J - \lambda I) = \begin{vmatrix} -2\sqrt{\mu} - \lambda & 0 \\ 0 & -1-\lambda \end{vmatrix} = (-2\sqrt{\mu}-\lambda)(-1-\lambda) = (2\sqrt{\mu}+\lambda)(1+\lambda) = 0$.
+Матрица Якоби линеаризованной системы в точке $(\sqrt{\mu}, 0)$:
+$$J = \begin{pmatrix} \pdv{f_1}{x_1} & \pdv{f_1}{x_2} \\ \pdv{f_2}{x_1} & \pdv{f_2}{x_2} \end{pmatrix} = \begin{pmatrix} -2\sqrt{\mu} & 0 \\ 0 & -1 \end{pmatrix}$$
+
+Найдем собственные значения $\lambda_1, \lambda_2$ как корни характеристического ур-ния:
+$$\det(J - \lambda I) = \begin{vmatrix} -2\sqrt{\mu} - \lambda & 0 \\ 0 & -1-\lambda \end{vmatrix} = (-2\sqrt{\mu}-\lambda)(-1-\lambda) = (2\sqrt{\mu}+\lambda)(1+\lambda) = 0.$$
+
 Здесь $\begin{cases} \lambda_1 = -2\sqrt{\mu} < 0 \\ \lambda_2 = -1 < 0 \end{cases} \implies (\sqrt{\mu}, 0)$ — устойчивый узел.
 
 Матрица Якоби линеаризованной системы в $(- \sqrt{\mu}, 0)$ имеет вид: $J = \begin{pmatrix} 2\sqrt{\mu} & 0 \\ 0 & -1 \end{pmatrix}$ /в этом случае решение ищем в виде $\begin{cases} \dot{x}_1 = -\sqrt{\mu} + \tilde{x}_1 \\ \dot{x}_2 = \tilde{x}_2 \end{cases}$/.
