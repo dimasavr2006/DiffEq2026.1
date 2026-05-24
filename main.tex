@@ -10,18 +10,14 @@
 \usepackage{indentfirst}
 
 % Microtype с отключенным расширением шрифтов (чтобы не было ошибки scalable fonts)
-\usepackage[expansion=false]{microtype} 
+\usepackage[expansion=false, nopatch=footnote]{microtype} 
 
 % ==========================================
 % 2. МАТЕМАТИКА И ФИЗИКА
 % ==========================================
 \usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
-% Настройка siunitx, чтобы он не конфликтовал с physics (команда \qty)
-\usepackage[separate-uncertainty=true]{siunitx} 
 \usepackage{physics}   
 \usepackage{cancel}    
-
-\AtBeginDocument{\let\qty\quantity}
 
 % Сквозная нумерация формул
 \usepackage{chngcntr}
@@ -39,6 +35,7 @@
 \usetikzlibrary{calc, patterns, arrows.meta, positioning, shapes.geometric, shadows}
 \usetikzlibrary{decorations.pathmorphing, decorations.markings}
 \usetikzlibrary{fit, backgrounds}
+\tikzset{every picture/.append style={semithick, line cap=round, line join=round, >=Stealth}}
 
 % Электрические схемы
 \usepackage[european, straightvoltages]{circuitikz}
@@ -105,6 +102,8 @@
 % ==========================================
 \usepackage{geometry}
 \geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+\emergencystretch=3em
+\hbadness=2000
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -114,11 +113,11 @@
 \renewcommand{\sectionmark}[1]{\markboth{#1}{}} 
 
 \newcommand{\subjectName}{Дифференциальные уравнения} 
-\setlength{\headheight}{25.22153pt}
+\setlength{\headheight}{30pt}
 
 % ВЕРХНИЙ КОЛОНТИТУЛ
-\lhead{\small \textsc{\subjectName}} % Слева название предмета
-\rhead{\small \nouppercase{\leftmark}} % Справа название лекции (без лишних номеров страниц)
+\lhead{\parbox[b]{0.36\textwidth}{\raggedright\small \textsc{\subjectName}}} % Слева название предмета
+\rhead{\parbox[b]{0.60\textwidth}{\raggedleft\scriptsize \nouppercase{\leftmark}}} % Справа название лекции
 
 % НИЖНИЙ КОЛОНТИТУЛ
 \cfoot{\thepage} % Номер страницы только тут
@@ -158,6 +157,7 @@
 \begin{document}
 	
 	% --- Титульный лист ---
+	\hypersetup{pageanchor=false}
 	\begin{titlepage}
 		\centering
 		\vspace*{5cm}
@@ -175,6 +175,8 @@
 		
 		\vspace{2cm}
 	\end{titlepage}
+	\hypersetup{pageanchor=true}
+	\pagenumbering{arabic}
 	
 	% --- Оглавление ---
 	\newpage
