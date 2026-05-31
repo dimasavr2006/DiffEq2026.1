@@ -1,0 +1,289 @@
+\noindent\underline{\textbf{18.05}}
+
+\section{Уравнение Лапласа (Уравнение электростатического поля)}
+
+\begin{itemize}
+	\item \textbf{Электрическое поле стационарных зарядов.}
+\end{itemize}
+
+Пусть $\rho(x,y,z)$ --- объемная плотность зарядов, имеющихся в среде, характеризуемой диэлектрической проницаемостью $\varepsilon = 1$. Распределение электрического поля в среде описывается уравнением Гаусса (из системы уравнений Максвелла):
+\begin{equation} \label{eq:laplace_gauss}
+	\div{\vb{E}} = 4\pi\rho \quad (1)
+\end{equation}
+
+Так как заряды неподвижны (стационарны), поле является потенциальным, откуда следует:
+\begin{equation} \label{eq:laplace_pot}
+	\vb{E} = -\grad{u} \quad (2)
+\end{equation}
+где $u$ --- потенциал электростатического поля.
+
+\begin{proofbox}
+	Подставим \eqref{eq:laplace_pot} в \eqref{eq:laplace_gauss}.
+	Пусть $\vb{E} = (E_x, E_y, E_z)$, тогда дивергенция поля имеет вид:
+	\begin{equation*}
+		\div{\vb{E}} = \pdv{E_x}{x} + \pdv{E_y}{y} + \pdv{E_z}{z}
+	\end{equation*}
+	Градиент потенциала $u$:
+	\begin{equation*}
+		\grad{u} = \pdv{u}{x}\vb{i} + \pdv{u}{y}\vb{j} + \pdv{u}{z}\vb{k}
+	\end{equation*}
+	Тогда дивергенция градиента запишется как:
+	\begin{equation*}
+		\div(\grad{u}) = \pdv[2]{u}{x} + \pdv[2]{u}{y} + \pdv[2]{u}{z} = \qty(\pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z})u
+	\end{equation*}
+	Обозначим $\Delta = \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z}$ --- оператор Лапласа.
+\end{proofbox}
+
+В результате подстановки получаем \textbf{уравнение Пуассона}:
+\begin{equation} \label{eq:poisson}
+	\Delta u = -4\pi\rho \quad (3)
+\end{equation}
+
+\begin{itemize}
+	\item Если мы ищем электростатическое поле в точках, где объемных зарядов нет ($\rho = 0$), то приходим к \textbf{уравнению Лапласа}:
+	\begin{equation} \label{eq:laplace}
+		\Delta u = 0 \quad (4)
+	\end{equation}
+\end{itemize}
+
+\subsection{Задача Дирихле для уравнения Лапласа в круге}
+
+Сформулируем задачу Дирихле в двумерном случае:
+\begin{equation} \label{eq:dirichlet_problem}
+	\begin{cases}
+		\Delta u = 0, \quad \text{где } \Delta = \pdv[2]{x} + \pdv[2]{y} \quad \text{(внутри круга)} \quad &(5) \\[1.5ex]
+		\eval{u}_{r=R} = \mu(\varphi) \quad \text{(на границе круга)} \quad &(6)
+	\end{cases}
+\end{equation}
+где $\mu(\varphi)$ --- заданная функция распределения потенциала на границе, а $\varphi$ --- полярный угол.
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.3]
+		\draw[-latex] (-1.5, 0) -- (2.2, 0) node[right] {$x$};
+		\draw[-latex] (0, -1.5) -- (0, 1.8) node[above] {$y$};
+		\draw[thick, pattern=north east lines, pattern color=gray!60] (0,0) circle (1.1);
+		\node[below left] at (0,0) {$O$};
+		\node[below right] at (1.1,0) {$R$};
+		\fill (1.1,0) circle (1.2pt);
+		\fill (0,0) circle (1.2pt);
+		\node[align=center, below] at (0,-1.2) {Область определения задачи (5)--(6)};
+	\end{tikzpicture}
+\end{center}
+
+Введем полярную систему координат:
+\begin{equation} \label{eq:polar_transform}
+	\begin{cases}
+		x = r \cos\varphi \\
+		y = r \sin\varphi
+	\end{cases}
+\end{equation}
+
+Перепишем уравнение Лапласа в координатах $r, \varphi$.
+\begin{proofbox}
+	Используя правила дифференцирования сложной функции, запишем первые частные производные:
+	\begin{equation} \label{eq:chain_r}
+		\pdv{u}{r} = \pdv{u}{x}\pdv{x}{r} + \pdv{u}{y}\pdv{y}{r} \implies \pdv{u}{r} = \pdv{u}{x}\cos\varphi + \pdv{u}{y}\sin\varphi \quad (7)
+	\end{equation}
+	\begin{equation} \label{eq:chain_phi}
+		\pdv{u}{\varphi} = \pdv{u}{x}\pdv{x}{\varphi} + \pdv{u}{y}\pdv{y}{\varphi} \implies \pdv{u}{\varphi} = -\pdv{u}{x} \cdot r\sin\varphi + \pdv{u}{y} \cdot r\cos\varphi \quad (8)
+	\end{equation}
+	
+	Выразим из полученной системы уравнений \eqref{eq:chain_r} и \eqref{eq:chain_phi} производные $\pdv*{u}{x}$ и $\pdv*{u}{y}$:
+	\begin{align*}
+		(7)\cdot r\sin\varphi + (8)\cdot \cos\varphi: \quad &\pdv{u}{r} \cdot r\sin\varphi + \pdv{u}{\varphi} \cdot \cos\varphi = \pdv{u}{y}\qty(r\sin^2\varphi + r\cos^2\varphi) \\[1ex]
+		\implies &\pdv{u}{y} = \pdv{u}{r}\sin\varphi + \frac{1}{r}\pdv{u}{\varphi}\cos\varphi \quad (10) \\[2ex]
+		(7)\cdot r\cos\varphi - (8)\cdot \sin\varphi: \quad &\pdv{u}{r} \cdot r\cos\varphi - \pdv{u}{\varphi} \cdot \sin\varphi = \pdv{u}{x}\qty(r\cos^2\varphi + r\sin^2\varphi) \\[1ex]
+		\implies &\pdv{u}{x} = \pdv{u}{r}\cos\varphi - \frac{1}{r}\pdv{u}{\varphi}\sin\varphi \quad (9)
+	\end{align*}
+	
+	Теперь перейдем ко вторым производным. Для $\pdv[2]{u}{x}$ получаем:
+	\begin{align*}
+		\pdv[2]{u}{x} &= \pdv{x}\qty(\pdv{u}{x}) = \pdv{r}\qty(\pdv{u}{x})\cos\varphi - \frac{1}{r}\pdv{\varphi}\qty(\pdv{u}{x})\sin\varphi \\[1ex]
+		&= \pdv{r}\qty(\pdv{u}{r}\cos\varphi - \frac{1}{r}\pdv{u}{\varphi}\sin\varphi)\cos\varphi - \frac{1}{r}\pdv{\varphi}\qty(\pdv{u}{r}\cos\varphi - \frac{1}{r}\pdv{u}{\varphi}\sin\varphi)\sin\varphi \\[1.5ex]
+		&= \pdv[2]{u}{r}\cos^2\varphi + \frac{1}{r^2}\pdv{u}{\varphi}\sin\varphi\cos\varphi - \frac{1}{r}\pdv[2]{u}{r}{\varphi}\sin\varphi\cos\varphi - \frac{1}{r}\pdv[2]{u}{\varphi}{r}\sin\varphi\cos\varphi \\[1ex]
+		&\quad + \frac{1}{r}\pdv{u}{r}\sin^2\varphi + \frac{1}{r^2}\pdv[2]{u}{\varphi}\sin^2\varphi + \frac{1}{r^2}\pdv{u}{\varphi}\cos\varphi\sin\varphi
+	\end{align*}
+	
+	Аналогично найдем $\pdv[2]{u}{y}$:
+	\begin{align*}
+		\pdv[2]{u}{y} &= \pdv{y}\qty(\pdv{u}{y}) = \pdv{r}\qty(\pdv{u}{y})\sin\varphi + \frac{1}{r}\pdv{\varphi}\qty(\pdv{u}{y})\cos\varphi \\[1ex]
+		&= \pdv{r}\qty(\pdv{u}{r}\sin\varphi + \frac{1}{r}\pdv{u}{\varphi}\cos\varphi)\sin\varphi + \frac{1}{r}\pdv{\varphi}\qty(\pdv{u}{r}\sin\varphi + \frac{1}{r}\pdv{u}{\varphi}\cos\varphi)\cos\varphi \\[1.5ex]
+		&= \pdv[2]{u}{r}\sin^2\varphi - \frac{1}{r^2}\pdv{u}{\varphi}\cos\varphi\sin\varphi + \frac{1}{r}\pdv[2]{u}{r}{\varphi}\cos\varphi\sin\varphi + \frac{1}{r}\pdv[2]{u}{\varphi}{r}\sin\varphi\cos\varphi \\[1ex]
+		&\quad + \frac{1}{r}\pdv{u}{r}\cos^2\varphi + \frac{1}{r^2}\pdv[2]{u}{\varphi}\cos^2\varphi - \frac{1}{r^2}\pdv{u}{\varphi}\sin\varphi\cos\varphi
+	\end{align*}
+	
+	Складывая $\pdv[2]{u}{x}$ и $\pdv[2]{u}{y}$, замечаем взаимное уничтожение перекрестных членов и упрощение тригонометрических коэффициентов:
+\end{proofbox}
+
+Таким образом, оператор Лапласа в полярных координатах принимает вид:
+\begin{equation} \label{eq:laplace_polar}
+	\Delta u = \pdv[2]{u}{x} + \pdv[2]{u}{y} = \pdv[2]{u}{r} + \frac{1}{r}\pdv{u}{r} + \frac{1}{r^2}\pdv[2]{u}{\varphi} \quad (11)
+\end{equation}
+
+\subsection{Решение уравнения Лапласа методом разделения переменных}
+
+Будем искать решение уравнения Лапласа (5) в виде произведения двух функций:
+\begin{equation} \label{eq:fourier_ansatz}
+	u(r,\varphi) = P(r) \cdot \Phi(\varphi) \neq 0 \quad (12)
+\end{equation}
+
+Подставим \eqref{eq:fourier_ansatz} в уравнение \eqref{eq:laplace_polar}, приравняв его к нулю:
+\begin{equation*}
+	\Delta u = P''(r)\Phi(\varphi) + \frac{1}{r} P'(r)\Phi(\varphi) + \frac{1}{r^2} P(r)\Phi''(\varphi) = 0
+\end{equation*}
+
+Разделим переменные, умножив обе части на $\frac{r^2}{P(r)\Phi(\varphi)}$:
+\begin{equation*}
+	\Phi(\varphi)\qty(P''(r) + \frac{1}{r}P'(r)) = -\frac{1}{r^2} P(r)\Phi''(\varphi)
+\end{equation*}
+\begin{equation} \label{eq:separated_laplace}
+	\frac{r^2 \qty( P''(r) + \frac{1}{r}P'(r) )}{P(r)} = -\frac{\Phi''(\varphi)}{\Phi(\varphi)} = \lambda = \text{const} \quad (13)
+\end{equation}
+Левая часть уравнения \eqref{eq:separated_laplace} зависит только от $r$, а правая --- только от $\varphi$. Следовательно, они могут быть равны только константе разделения $\lambda$. Получаем систему двух обыкновенных дифференциальных уравнений:
+\begin{equation*}
+	\begin{cases}
+		r^2\qty(P''(r) + \frac{1}{r}P'(r)) = \lambda P(r), \quad \text{где } P(r) \neq 0 \quad &(14) \\
+		\Phi''(\varphi) = -\lambda \Phi(\varphi), \quad \text{где } \Phi(\varphi) \neq 0 \quad &(15)
+	\end{cases}
+\end{equation*}
+
+Рассмотрим возможные случаи для константы $\lambda$:
+
+\begin{example}[1 случай: $\lambda < 0$]
+	Пусть $\lambda = -p^2$ (где $p > 0$).
+	Тогда уравнение \eqref{eq:separated_laplace}b для угловой составляющей запишется в виде:
+	\begin{equation*}
+		\Phi''(\varphi) = p^2 \Phi(\varphi) \iff \Phi'' - p^2\Phi = 0
+	\end{equation*}
+	Характеристическое уравнение: $q^2 - p^2 = 0 \iff q = \pm p$.
+	Общее решение:
+	\begin{equation*}
+		\Phi(\varphi) = A e^{p\varphi} + B e^{-p\varphi}
+	\end{equation*}
+	Данное решение не удовлетворяет физическому требованию однозначности потенциала в круге, согласно которому должно выполняться условие периодичности по углу $\varphi$:
+	\begin{equation*}
+		\Phi(\varphi + 2\pi) = \Phi(\varphi)
+	\end{equation*}
+	Экспоненциальные функции не являются периодическими на вещественной оси, поэтому данный случай не имеет физического смысла (дает лишь тривиальное решение при попытке удовлетворить периодичности).
+\end{example}
+
+\begin{example}[2 случай: $\lambda = 0$]
+	Тогда уравнение для угловой части имеет вид:
+	\begin{equation*}
+		\Phi'' = 0 \iff \Phi(\varphi) = A\varphi + B
+	\end{equation*}
+	Из условия периодичности $\Phi(\varphi + 2\pi) = \Phi(\varphi)$ получаем:
+	\begin{equation*}
+		A(\varphi + 2\pi) + B = A\varphi + B \implies 2\pi A = 0 \implies A = 0
+	\end{equation*}
+	Таким образом, $\Phi(\varphi) = B = \text{const}$.
+	
+	Решим теперь уравнение (14) для радиальной составляющей при $\lambda = 0$:
+	\begin{equation*}
+		r^2\qty(P''(r) + \frac{1}{r}P'(r)) = 0 \overset{r \neq 0}{\iff} P''(r) + \frac{1}{r}P'(r) = 0
+	\end{equation*}
+	Сделаем замену переменной $V(r) = P'(r)$, тогда уравнение сводится к уравнению первого порядка с разделяющимися переменными:
+	\begin{equation*}
+		V' + \frac{1}{r}V = 0 \iff \frac{dV}{dr} = -\frac{V}{r} \implies \int \frac{dV}{V} = -\int \frac{dr}{r}
+	\end{equation*}
+	\begin{equation*}
+		\ln|V| = -\ln|r| + C_1 \implies |V| = \frac{e^{C_1}}{|r|} \implies V(r) = \frac{C_2}{r} \quad (\text{так как } r > 0)
+	\end{equation*}
+	Возвращаясь к функции $P(r)$:
+	\begin{equation*}
+		P'(r) = \frac{C_2}{r} \implies P(r) = \int \frac{C_2}{r} \dd{r} = C_2 \ln r + C_3
+	\end{equation*}
+	Следовательно, частное решение для потенциала принимает вид:
+	\begin{equation*}
+		u(r,\varphi) = P(r)\Phi(\varphi) = (C_2 \ln r + C_3) B = C \ln r + D
+	\end{equation*}
+	Поскольку мы ищем решение внутри круга, включающего центр ($r \to 0$), заметим, что:
+	\begin{equation*}
+		\lim_{r\to 0} u(r,\varphi) = -\infty \quad (\text{при } C \neq 0)
+	\end{equation*}
+	Физически потенциал в центре круга должен быть конечной величиной. Из требования ограниченности решения при $r \to 0$ следует, что коэффициент при сингулярном члене должен быть равен нулю:
+	\begin{equation*}
+		C = 0 \implies u = D = \text{const}
+	\end{equation*}
+\end{example}
+
+\begin{example}[3 случай: $\lambda > 0$]
+	Пусть $\lambda = p^2$ (где $p > 0$).
+	Тогда уравнение для угловой функции $\Phi(\varphi)$ принимает вид:
+	\begin{equation*}
+		\Phi'' + p^2 \Phi = 0 \iff q^2 + p^2 = 0 \iff q = \pm ip
+	\end{equation*}
+	Его общее решение:
+	\begin{equation*}
+		\Phi(\varphi) = A\cos(p\varphi) + C\sin(p\varphi)
+	\end{equation*}
+	Из условия периодичности $\Phi(\varphi + 2\pi) = \Phi(\varphi)$ следует, что параметр $p$ должен принимать только целые значения:
+	\begin{equation*}
+		p \in \mathbb{Z} \quad (\text{или } p \in \mathbb{N}, \text{ так как } p > 0)
+	\end{equation*}
+	
+	Решим уравнение (14) для радиальной части при $\lambda = p^2$:
+	\begin{equation*}
+		r^2\qty(P''(r) + \frac{1}{r}P'(r)) = p^2 P(r) \iff r^2 P''(r) + r P'(r) - p^2 P(r) = 0
+	\end{equation*}
+	Это однородное линейное уравнение Эйлера. Ищем его решение в виде степенной функции $P(r) = r^a$:
+	\begin{equation*}
+		r^2 \qty( a(a-1)r^{a-2} ) + r \qty( a r^{a-1} ) = p^2 r^a
+	\end{equation*}
+	\begin{equation*}
+		a(a-1)r^a + a r^a = p^2 r^a \iff a^2 - a + a = p^2 \iff a^2 = p^2 \implies a = \pm p
+	\end{equation*}
+	Получаем фундаментальную систему решений (ФСР):
+	\begin{equation*}
+		\begin{cases}
+			P_1(r) = r^p \\
+			P_2(r) = r^{-p}
+		\end{cases}
+		\end{equation*}
+		Тогда общее радиальное решение имеет вид:
+		\begin{equation*}
+			P(r) = C_1 r^p + D_1 r^{-p}
+		\end{equation*}
+		Исходя из требования ограниченности потенциала в центре круга при $r \to 0$, слагаемое с отрицательной степенью $r^{-p}$ (стремящееся к бесконечности) недопустимо:
+		\begin{equation*}
+			\lim_{r\to 0} P(r) = \infty \implies D_1 = 0 \implies P(r) = C \cdot r^p
+		\end{equation*}
+		
+		Объединяя результаты, получаем семейство частных решений уравнения Лапласа в круге:
+		\begin{equation} \label{eq:laplace_particular}
+			u_p(r,\varphi) = \qty( A \cos(p\varphi) + B \sin(p\varphi) ) \cdot r^p \quad (16)
+		\end{equation}
+	\end{example}
+	\subsection{Общее решение задачи Дирихле в круге}
+	
+	Используя принцип суперпозиции, объединим полученные частные решения для всех возможных значений параметра разделения $\lambda$. Объединяя решение для $\lambda = 0$ (постоянная составляющая $A_0$) и семейство решений для $\lambda_n = n^2$ ($n \in \mathbb{N}$), запишем общее решение уравнения Лапласа внутри круга в виде бесконечного ряда:
+	\begin{equation} \label{eq:laplace_general_series}
+		u(r,\varphi) = A_0 + \sum_{n=1}^{\infty} r^n \qty( A_n \cos(n\varphi) + B_n \sin(n\varphi) ) \quad (17)
+	\end{equation}
+	
+	Для определения неизвестных коэффициентов $A_0$, $A_n$ и $B_n$ воспользуемся граничным условием Дирихле \eqref{eq:dirichlet_problem} на окружности радиуса $R$:
+	\begin{equation} \label{eq:boundary_sub}
+		u(R,\varphi) = A_0 + \sum_{n=1}^{\infty} R^n \qty( A_n \cos(n\varphi) + B_n \sin(n\varphi) ) = \mu(\varphi) \quad (18)
+	\end{equation}
+	
+	Выражение \eqref{eq:boundary_sub} представляет собой разложение заданной функции $\mu(\varphi)$ в классический тригонометрический ряд Фурье на интервале $[-\pi, \pi]$ (или $[0, 2\pi]$). Коэффициенты разложения $A_0$, $A_n R^n$ и $B_n R^n$ определяются стандартными формулами Эйлера-Фурье:
+	\begin{equation} \label{eq:coeff_a0}
+		A_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} \mu(\psi) \dd{\psi}
+	\end{equation}
+	\begin{equation} \label{eq:coeff_an}
+		A_n R^n = \frac{1}{\pi} \int_{-\pi}^{\pi} \mu(\psi) \cos(n\psi) \dd{\psi} \implies A_n = \frac{1}{\pi R^n} \int_{-\pi}^{\pi} \mu(\psi) \cos(n\psi) \dd{\psi}
+	\end{equation}
+	\begin{equation} \label{eq:coeff_bn}
+		B_n R^n = \frac{1}{\pi} \int_{-\pi}^{\pi} \mu(\psi) \sin(n\psi) \dd{\psi} \implies B_n = \frac{1}{\pi R^n} \int_{-\pi}^{\pi} \mu(\psi) \sin(n\psi) \dd{\psi}
+	\end{equation}
+	
+	Подставляя найденные коэффициенты обратно в общий ряд \eqref{eq:laplace_general_series}, мы получаем единственное аналитическое решение задачи Дирихле для уравнения Лапласа внутри круга.
+	
+	\begin{nb}
+		Если подставить формулы для коэффициентов \eqref{eq:coeff_a0}--\eqref{eq:coeff_bn} непосредственно в ряд \eqref{eq:laplace_general_series} и поменять порядок суммирования и интегрирования, можно получить решение в замкнутом интегральном виде --- \textbf{интеграл Пуассона}:
+		\begin{equation} \label{eq:poisson_integral}
+			u(r,\varphi) = \frac{1}{2\pi} \int_{-\pi}^{\pi} \mu(\psi) \frac{R^2 - r^2}{R^2 - 2Rr\cos(\varphi - \psi) + r^2} \dd{\psi}
+		\end{equation}
+		Этот интеграл позволяет вычислить значение потенциала $u$ в любой внутренней точке круга $(r < R)$ через его граничные значения $\mu(\psi)$.
+	\end{nb}
+	
